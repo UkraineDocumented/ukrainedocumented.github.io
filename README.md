@@ -55,10 +55,4 @@ export default {
 };
 ```
 
-### Scrolly starter
-
 This project also utilizes Russell Goldenberg's **`Scrolly.svelte`** [component](https://svelte.dev/repl/3d3736e634c9404ea8ec2ef7b87e2053?version=3.42.4) and Connor Rothschild's Scrolly [tutorial](https://www.connorrothschild.com/post/svelte-scrollytelling#step-0a-understand-russells-ltscrolly-gt).
-
-```
-
-```
