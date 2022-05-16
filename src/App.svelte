@@ -22,37 +22,18 @@
 	/**************/
 
 	/* colors */
-	const colorA = "#efeff0"; // whitish background color
-	const colorB = "#d5cad6"; // grayish region border color
-	const colorC = "#b29dbc"; // muted purple label and point color
-	const colorD = "#70587c"; // saturated purple heading color
-	const colorE = "#adb5bd"; // light gray box shadow color
-	const colorF = "#f6bd60"; // yellow active color
-	const colorG = "#e76f51"; // orange pulse color
+	const colorA = "#efeff0"; // whitish : background color
+	const colorB = "#d5cad6"; // grayish : region border color
+	const colorC = "#b29dbc"; // muted purple : label and point color
+	const colorD = "#7c6c83"; // dark purple : heading color
+	const colorE = "#adb5bd"; // light gray : box shadow color
+	const colorF = "#f6bd60"; // yellow : hover color
+	const colorG = "#e76f51"; // orange : highlight color
 
 	/* main map container */
 	const w = 840;
 	const h = 640;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
-
-	/***************/
-	/*** SCROLLY ***/
-	/***************/
-
-	let currentStep;
-	const steps = ["Step 0", "Step 1", "Step 2"];
-
-	/* run code reactively based on scroll position */
-
-	// this "if...else" block will run every time the variable currentStep
-	// changes and evaluate differently based on the variable's value
-	$: if (currentStep == 0) {
-		console.log("Step 0");
-	} else if (currentStep == 1) {
-		console.log("Step 1");
-	} else if (currentStep == 2) {
-		console.log("Step 2");
-	}
 
 	/***********/
 	/*** MAP ***/
@@ -76,13 +57,88 @@
 	);
 
 	/* onMount (Svelte Lifecycle) */
+	let cities = citiesData.filter((d) => d.show == "true"); // filtering major cities to label
+	let data = ukraineData.filter((d) => {
+		return projection([+d.long, +d.lat]) != null;
+	});
+
 	let svg;
+	let points;
+	let tooltip;
+
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("svg").attr("width", w).attr("height", h);
+		points = svg
+			.selectAll(".point")
+			.data(ukraineData)
+			.join("circle")
+			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
+			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
+			.attr("r", 3)
+			.attr("class", "point");
 	});
 
-	let cities = citiesData.filter((d) => d.show == "true"); // filtering major cities to label
+	/***************/
+	/*** SCROLLY ***/
+	/***************/
+
+	let currentStep;
+	const steps = [
+		"<p>Damage to civilian infrastructure</p>",
+		"<p>Residential buildings</p>",
+		"<p>Hospitals and healthcare providers</p>",
+		"<p>Education or childcare</p>",
+	];
+
+	const step0 = function () {
+		// default styles
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+	};
+
+	const step1 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Residential")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	const step2 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Healthcare")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	const step3 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Education or childcare")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	/* run code reactively based on scroll position */
+
+	// this "if...else" block will run every time the variable currentStep
+	// changes and evaluate differently based on the variable's value
+	$: if (currentStep == 0) {
+		step0();
+	} else if (currentStep == 1) {
+		step1();
+	} else if (currentStep == 2) {
+		step2();
+	} else if (currentStep == 3) {
+		step3();
+	}
 </script>
 
 <svelte:head>
@@ -177,6 +233,20 @@
 		fill: #b29dbc;
 		font-size: 12px;
 		font-family: "IBM Plex Mono", monospace;
+	}
+
+	/* POINTS STYLING */
+
+	:global(.point) {
+		fill: #7c6c83;
+		opacity: 0.65;
+	}
+
+	:global(.point:hover) {
+		fill: #f6bd60;
+		opacity: 1;
+		stroke: #f6bd60; /* TO DO: fix stroke width/fill on hover */
+		stroke-width: 3px;
 	}
 
 	/* STEP OVERLAY CONTENT STYLING */
