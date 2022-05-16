@@ -13,7 +13,7 @@
 	import topo from "./assets/ukraine-regions.json";
 	import cities from "./assets/ukraine-cities.json";
 
-	/* SET-UP/CONFIG */
+	/* SET-UP */
 
 	/* colors */
 	const colorA = "#efeff0"; // whitish background color
@@ -28,6 +28,29 @@
 	const w = 840;
 	const h = 640;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
+
+	/* BUILDING THE MAP */
+
+	/* DOM elements are first accessible inside onMount */
+	onMount(async () => {
+		let svg = d3.select("svg").attr("width", w).attr("height", h);
+	});
+
+	/* map definitions */
+	const oblasts = topojson.feature(topo, topo.objects.UKR_adm1);
+	const geo = oblasts.features;
+	const projection = d3.geoAlbers().rotate([-30, 0, 0]);
+	const path = d3.geoPath().projection(
+		// a projection’s .fitExtent() method sets the projection’s
+		// to fit within a given bounding box
+		projection.fitExtent(
+			[
+				[m.top, m.left],
+				[w - m.bottom, h - m.right],
+			],
+			oblasts
+		)
+	);
 
 	/* HANDLING THE SCROLLY */
 	let currentStep;
@@ -63,8 +86,18 @@
 	/>
 </svelte:head>
 
+<!-- SCROLLY UKRAINE MAP -->
 <section>
-	<!-- A SCROLLY CONTAINER -->
+	<!-- a sticky base map -->
+	<div class="map-container">
+		<svg>
+			{#each geo as g}
+				<path d={path(g)} class="oblasts" />
+			{/each}
+		</svg>
+	</div>
+
+	<!-- a scrolly container -->
 	<Scrolly bind:value={currentStep}>
 		{#each steps as text, i}
 			<!-- set an "active" class to the step content if the "currentStep" is 
@@ -79,6 +112,23 @@
 </section>
 
 <style>
+	/* MAP STYLING */
+
+	.map-container {
+		width: 840px;
+		height: 640px;
+		top: 5%;
+		margin: auto;
+		position: sticky;
+		padding: 20px;
+	}
+
+	.oblasts {
+		fill: #efeff0;
+		stroke: #d5cad6;
+		stroke-width: 1.5px;
+	}
+
 	/* STEP OVERLAY CONTENT STYLING */
 
 	/* the container for each step */
@@ -91,7 +141,7 @@
 
 	/* the content for each step */
 	.step-content {
-		background-color: #f8f9fa;
+		background-color: #efeff0;
 		color: #ccc;
 		font-family: "IBM Plex Mono", monospace;
 		font-size: 12px;
@@ -101,7 +151,7 @@
 		flex-direction: column;
 		justify-content: center;
 		transition: background 500ms ease;
-		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+		box-shadow: 1px 1px 5px #adb5bd;
 		z-index: 10;
 	}
 

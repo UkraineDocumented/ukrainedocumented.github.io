@@ -133,6 +133,9 @@ var app = (function () {
     function element(name) {
         return document.createElement(name);
     }
+    function svg_element(name) {
+        return document.createElementNS('http://www.w3.org/2000/svg', name);
+    }
     function text$1(data) {
         return document.createTextNode(data);
     }
@@ -23072,16 +23075,53 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
-    	child_ctx[6] = i;
+    	child_ctx[8] = list[i];
+    	child_ctx[10] = i;
     	return child_ctx;
     }
 
-    // (69:2) {#each steps as text, i}
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[11] = list[i];
+    	return child_ctx;
+    }
+
+    // (94:3) {#each geo as g}
+    function create_each_block_1(ctx) {
+    	let path_1;
+
+    	const block = {
+    		c: function create() {
+    			path_1 = svg_element("path");
+    			attr_dev(path_1, "d", /*path*/ ctx[2](/*g*/ ctx[11]));
+    			attr_dev(path_1, "class", "oblasts svelte-1mj4ghh");
+    			add_location(path_1, file, 94, 4, 2791);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path_1, anchor);
+    		},
+    		p: noop$4,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path_1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(94:3) {#each geo as g}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (102:2) {#each steps as text, i}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
-    	let raw_value = /*text*/ ctx[4] + "";
+    	let raw_value = /*text*/ ctx[8] + "";
     	let t;
 
     	const block = {
@@ -23089,11 +23129,11 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "class", "step-content svelte-mptt5c");
-    			add_location(div0, file, 72, 4, 2342);
-    			attr_dev(div1, "class", "step svelte-mptt5c");
-    			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[6]);
-    			add_location(div1, file, 71, 3, 2286);
+    			attr_dev(div0, "class", "step-content svelte-1mj4ghh");
+    			add_location(div0, file, 105, 4, 3118);
+    			attr_dev(div1, "class", "step svelte-1mj4ghh");
+    			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[10]);
+    			add_location(div1, file, 104, 3, 3062);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -23103,7 +23143,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*currentStep*/ 1) {
-    				toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[6]);
+    				toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[10]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -23115,17 +23155,17 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(69:2) {#each steps as text, i}",
+    		source: "(102:2) {#each steps as text, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:1) <Scrolly bind:value={currentStep}>
+    // (101:1) <Scrolly bind:value={currentStep}>
     function create_default_slot(ctx) {
     	let each_1_anchor;
-    	let each_value = /*steps*/ ctx[1];
+    	let each_value = /*steps*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -23149,8 +23189,8 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*currentStep, steps*/ 3) {
-    				each_value = /*steps*/ ctx[1];
+    			if (dirty & /*currentStep, steps*/ 9) {
+    				each_value = /*steps*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -23183,7 +23223,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(68:1) <Scrolly bind:value={currentStep}>",
+    		source: "(101:1) <Scrolly bind:value={currentStep}>",
     		ctx
     	});
 
@@ -23194,14 +23234,24 @@ var app = (function () {
     	let link0;
     	let link1;
     	let link2;
-    	let t;
+    	let t0;
     	let section;
+    	let div;
+    	let svg;
+    	let t1;
     	let scrolly;
     	let updating_value;
     	let current;
+    	let each_value_1 = /*geo*/ ctx[1];
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
 
     	function scrolly_value_binding(value) {
-    		/*scrolly_value_binding*/ ctx[2](value);
+    		/*scrolly_value_binding*/ ctx[4](value);
     	}
 
     	let scrolly_props = {
@@ -23221,20 +23271,31 @@ var app = (function () {
     			link0 = element("link");
     			link1 = element("link");
     			link2 = element("link");
-    			t = space();
+    			t0 = space();
     			section = element("section");
+    			div = element("div");
+    			svg = svg_element("svg");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t1 = space();
     			create_component(scrolly.$$.fragment);
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
-    			add_location(link0, file, 57, 1, 1664);
+    			add_location(link0, file, 80, 1, 2256);
     			attr_dev(link1, "rel", "preconnect");
     			attr_dev(link1, "href", "https://fonts.gstatic.com");
     			attr_dev(link1, "crossorigin", "");
-    			add_location(link1, file, 58, 1, 1727);
+    			add_location(link1, file, 81, 1, 2319);
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
-    			add_location(link2, file, 59, 1, 1799);
-    			add_location(section, file, 65, 0, 2071);
+    			add_location(link2, file, 82, 1, 2391);
+    			add_location(svg, file, 92, 2, 2761);
+    			attr_dev(div, "class", "map-container svelte-1mj4ghh");
+    			add_location(div, file, 91, 1, 2731);
+    			add_location(section, file, 89, 0, 2692);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23243,15 +23304,47 @@ var app = (function () {
     			append_dev(document.head, link0);
     			append_dev(document.head, link1);
     			append_dev(document.head, link2);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
     			insert_dev(target, section, anchor);
+    			append_dev(section, div);
+    			append_dev(div, svg);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(svg, null);
+    			}
+
+    			append_dev(section, t1);
     			mount_component(scrolly, section, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*path, geo*/ 6) {
+    				each_value_1 = /*geo*/ ctx[1];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(svg, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+
     			const scrolly_changes = {};
 
-    			if (dirty & /*$$scope, currentStep*/ 129) {
+    			if (dirty & /*$$scope, currentStep*/ 16385) {
     				scrolly_changes.$$scope = { dirty, ctx };
     			}
 
@@ -23276,8 +23369,9 @@ var app = (function () {
     			detach_dev(link0);
     			detach_dev(link1);
     			detach_dev(link2);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(section);
+    			destroy_each(each_blocks, detaching);
     			destroy_component(scrolly);
     		}
     	};
@@ -23310,6 +23404,22 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
     	const m = { top: 20, right: 20, bottom: 20, left: 20 };
+
+    	/* BUILDING THE MAP */
+    	/* DOM elements are first accessible inside onMount */
+    	onMount(async () => {
+    		select("svg").attr("width", w).attr("height", h);
+    	});
+
+    	/* map definitions */
+    	const oblasts = feature(topo, topo.objects.UKR_adm1);
+
+    	const geo = oblasts.features;
+    	const projection = albers().rotate([-30, 0, 0]);
+
+    	const path = index$2().projection(// a projection’s .fitExtent() method sets the projection’s
+    	// to fit within a given bounding box
+    	projection.fitExtent([[m.top, m.left], [w - m.bottom, h - m.right]], oblasts));
 
     	/* HANDLING THE SCROLLY */
     	let currentStep;
@@ -23344,6 +23454,10 @@ var app = (function () {
     		w,
     		h,
     		m,
+    		oblasts,
+    		geo,
+    		projection,
+    		path,
     		currentStep,
     		steps
     	});
@@ -23372,7 +23486,7 @@ var app = (function () {
     		}
     	};
 
-    	return [currentStep, steps, scrolly_value_binding];
+    	return [currentStep, geo, path, steps, scrolly_value_binding];
     }
 
     class App extends SvelteComponentDev {
