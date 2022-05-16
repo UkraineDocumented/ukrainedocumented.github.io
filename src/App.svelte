@@ -1,9 +1,12 @@
 <script>
-	/* IMPORTS */
+	/***************/
+	/*** IMPORTS ***/
+	/***************/
 
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 
+	/* import dependencies */
 	import { tweened } from "svelte/motion";
 	import { onMount } from "svelte";
 	import * as d3 from "d3"; // D3.js
@@ -12,8 +15,11 @@
 	/* import data */
 	import topoData from "./assets/ukraine-regions.json";
 	import citiesData from "./assets/ukraine-cities.json";
+	import ukraineData from "./assets/ukraine-data.json";
 
-	/* SET-UP */
+	/**************/
+	/*** SET-UP ***/
+	/**************/
 
 	/* colors */
 	const colorA = "#efeff0"; // whitish background color
@@ -29,15 +35,17 @@
 	const h = 640;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
 
-	/* HANDLING THE SCROLLY */
+	/***************/
+	/*** SCROLLY ***/
+	/***************/
+
 	let currentStep;
 	const steps = ["Step 0", "Step 1", "Step 2"];
 
-	/* run code reactively based on scroll position
-	 * this "if...else" block will run every time the variable
-	 * currentStep changes and evaluate differently based on
-	 * the variable's value */
+	/* run code reactively based on scroll position */
 
+	// this "if...else" block will run every time the variable currentStep
+	// changes and evaluate differently based on the variable's value
 	$: if (currentStep == 0) {
 		console.log("Step 0");
 	} else if (currentStep == 1) {
@@ -46,16 +54,14 @@
 		console.log("Step 2");
 	}
 
-	/* BUILDING THE MAP */
-
-	/* DOM elements are first accessible inside onMount */
-	onMount(async () => {
-		let svg = d3.select("svg").attr("width", w).attr("height", h);
-	});
+	/***********/
+	/*** MAP ***/
+	/***********/
 
 	/* map definitions */
-	const topo = topojson.feature(topoData, topoData.objects.UKR_adm1);
-	const geo = topo.features; // converts topojson to geojson
+	const topo = topojson.feature(topoData, topoData.objects.UKR_adm1); // a topojson method that creates a geojson object
+	const geo = topo.features; // accesses the features property of the newly created  geojson object
+
 	const projection = d3.geoAlbers().rotate([-30, 0, 0]);
 	const path = d3.geoPath().projection(
 		// a projection’s .fitExtent() method sets the projection’s
@@ -69,8 +75,14 @@
 		)
 	);
 
+	/* onMount (Svelte Lifecycle) */
+	let svg;
+	onMount(async () => {
+		// DOM elements are first accessible inside onMount
+		svg = d3.select("svg").attr("width", w).attr("height", h);
+	});
+
 	let cities = citiesData.filter((d) => d.show == "true"); // filtering major cities to label
-	console.log(cities);
 </script>
 
 <svelte:head>
@@ -95,10 +107,13 @@
 	<!-- a sticky base map -->
 	<div class="map-container">
 		<svg>
+			<!-- oblasts -->
 			{#each geo as g}
 				<path d={path(g)} class="regions" />
 			{/each}
+			<!-- plotting major cities -->
 			{#each cities as city}
+				<!-- points -->
 				<rect
 					x={projection([+city.lng, +city.lat])[0]}
 					y={projection([+city.lng, +city.lat])[1]}
@@ -107,6 +122,7 @@
 					fill="steelblue"
 					class="cities"
 				/>
+				<!-- labels -->
 				<text
 					x={projection([+city.lng, +city.lat])[0]}
 					y={projection([+city.lng, +city.lat])[1]}
