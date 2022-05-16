@@ -5,6 +5,7 @@
 
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
+	import Slider from "./Slider.svelte"; // hero slider image component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -159,6 +160,8 @@
 </svelte:head>
 
 <!-- SCROLLY UKRAINE MAP -->
+<Slider />
+
 <section>
 	<!-- a sticky base map -->
 	<div class="map-container">
@@ -207,6 +210,8 @@
 </section>
 
 <style>
+	/* TO DO: add variables for colors */
+
 	/* MAP STYLING */
 
 	.map-container {
