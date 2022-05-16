@@ -10,8 +10,8 @@
 	import * as topojson from "topojson"; // TopoJSON
 
 	/* import data */
-	import topo from "./assets/ukraine-regions.json";
-	import cities from "./assets/ukraine-cities.json";
+	import topoData from "./assets/ukraine-regions.json";
+	import citiesData from "./assets/ukraine-cities.json";
 
 	/* SET-UP */
 
@@ -29,29 +29,6 @@
 	const h = 640;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
 
-	/* BUILDING THE MAP */
-
-	/* DOM elements are first accessible inside onMount */
-	onMount(async () => {
-		let svg = d3.select("svg").attr("width", w).attr("height", h);
-	});
-
-	/* map definitions */
-	const oblasts = topojson.feature(topo, topo.objects.UKR_adm1);
-	const geo = oblasts.features;
-	const projection = d3.geoAlbers().rotate([-30, 0, 0]);
-	const path = d3.geoPath().projection(
-		// a projection’s .fitExtent() method sets the projection’s
-		// to fit within a given bounding box
-		projection.fitExtent(
-			[
-				[m.top, m.left],
-				[w - m.bottom, h - m.right],
-			],
-			oblasts
-		)
-	);
-
 	/* HANDLING THE SCROLLY */
 	let currentStep;
 	const steps = ["Step 0", "Step 1", "Step 2"];
@@ -68,15 +45,42 @@
 	} else if (currentStep == 2) {
 		console.log("Step 2");
 	}
+
+	/* BUILDING THE MAP */
+
+	/* DOM elements are first accessible inside onMount */
+	onMount(async () => {
+		let svg = d3.select("svg").attr("width", w).attr("height", h);
+	});
+
+	/* map definitions */
+	const topo = topojson.feature(topoData, topoData.objects.UKR_adm1);
+	const geo = topo.features; // converts topojson to geojson
+	const projection = d3.geoAlbers().rotate([-30, 0, 0]);
+	const path = d3.geoPath().projection(
+		// a projection’s .fitExtent() method sets the projection’s
+		// to fit within a given bounding box
+		projection.fitExtent(
+			[
+				[m.top, m.left],
+				[w - m.bottom, h - m.right],
+			],
+			topo
+		)
+	);
+
+	let cities = citiesData.filter((d) => d.show == "true"); // filtering major cities to label
+	console.log(cities);
 </script>
 
 <svelte:head>
 	<!-- IMPORT GOOGLE FONTS -->
-	<!-- CSS rules to specify the families:
-			font-family: 'IBM Plex Mono', monospace;
-			font-family: 'Space Grotesk', sans-serif;
-			font-family: 'Spectral', serif;
-			-->
+	<!-- 
+		CSS rules to specify the families:
+		font-family: 'IBM Plex Mono', monospace;
+		font-family: 'Space Grotesk', sans-serif;
+		font-family: 'Spectral', serif;
+	-->
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -92,7 +96,26 @@
 	<div class="map-container">
 		<svg>
 			{#each geo as g}
-				<path d={path(g)} class="oblasts" />
+				<path d={path(g)} class="regions" />
+			{/each}
+			{#each cities as city}
+				<rect
+					x={projection([+city.lng, +city.lat])[0]}
+					y={projection([+city.lng, +city.lat])[1]}
+					width="5px"
+					height="5px"
+					fill="steelblue"
+					class="cities"
+				/>
+				<text
+					x={projection([+city.lng, +city.lat])[0]}
+					y={projection([+city.lng, +city.lat])[1]}
+					dx="10"
+					dy="7"
+					class="city-label"
+				>
+					{city.city.toUpperCase()}
+				</text>
 			{/each}
 		</svg>
 	</div>
@@ -123,10 +146,21 @@
 		padding: 20px;
 	}
 
-	.oblasts {
+	.regions {
 		fill: #efeff0;
 		stroke: #d5cad6;
 		stroke-width: 1.5px;
+	}
+
+	.cities {
+		fill: #b29dbc;
+		opacity: 0.9;
+	}
+
+	.city-label {
+		fill: #b29dbc;
+		font-size: 12px;
+		font-family: "IBM Plex Mono", monospace;
 	}
 
 	/* STEP OVERLAY CONTENT STYLING */
