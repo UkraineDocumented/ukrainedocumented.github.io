@@ -6,7 +6,6 @@
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 	import Slider from "./Slider.svelte"; // hero slider image component
-	import Button from "./Button.svelte"; // reusable button component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -64,8 +63,7 @@
 		return projection([+d.long, +d.lat]) != null;
 	});
 
-	let svgMap;
-	let svgScrolly;
+	let svg;
 	let points;
 	let timelapse;
 	let tooltip;
@@ -73,11 +71,7 @@
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
-		svgScrolly = d3
-			.select("#scrolly")
-			.select("svg")
-			.attr("width", w)
-			.attr("height", h);
+		svg = d3.select("svg").attr("width", w).attr("height", h);
 		points = svg
 			.selectAll(".point")
 			.data(ukraineData)
@@ -108,7 +102,10 @@
 
 	function update(data, inverted) {
 		// filter and plot points in a timelapse fashion
-		let filtered = data.filter((d) => d.data <= formatTime(inverted));
+		let filtered = data.filter((d) => d.date <= formatTime(inverted));
+
+		console.log("filtered data", filtered);
+
 		timelapse = svg
 			.selectAll(".point")
 			.data(filtered)
@@ -126,7 +123,6 @@
 			)
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
-		console.log(parseTime(inverted));
 	}
 
 	/***************/
@@ -142,37 +138,9 @@
 	];
 
 	const step0 = function () {
-		let pointer = 1;
-
-		let timer;
-		let inverted;
-
-		playBtn.on("click", () => {
-			if (playBtn.text() == "Play" || playBtn.text() == "Restart") {
-				timer = setInterval(() => {
-					inverted = xScale.invert(pointer);
-					update(data, inverted);
-					if (pointer < numDays) {
-						pointer++; // increment pointer as long as the value is lower than total # of days
-					} else {
-						clearInterval(timer); // once the total # of days is reached, clear the timer
-						pointer = 1; // reset pointer
-						playBtn.text("Restart");
-					}
-				}, 500);
-				playBtn.text("Pause");
-			} else if (playBtn.text() == "Pause") {
-				clearInterval(timer);
-				playBtn.text("Play");
-			}
-		});
-	};
-
-	/*
-	const step0 = function () {
 		// default styles
 		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
-	};*/
+	};
 
 	const step1 = function () {
 		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
@@ -185,8 +153,8 @@
 	};
 
 	const step2 = function () {
-		svgScrolly.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svgScrolly
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
 			.selectAll(".point")
 			.filter((d) => d.area_type === "Healthcare")
 			.style("fill", colorG)
@@ -195,8 +163,8 @@
 	};
 
 	const step3 = function () {
-		svgScrolly.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svgScrolly
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
 			.selectAll(".point")
 			.filter((d) => d.area_type === "Education or childcare")
 			.style("fill", colorG)
@@ -237,41 +205,14 @@
 </svelte:head>
 
 <Slider />
+
+<section>
+	<div class="map-container" />
+</section>
 <!-- SCROLLY UKRAINE MAP -->
 <section>
 	<!-- a sticky base map -->
-	<div class="map-container" id="timelapse">
-		<Button type="play-button">Play</Button>
-		<svg>
-			<!-- oblasts -->
-			{#each geo as g}
-				<path d={path(g)} class="regions" />
-			{/each}
-			<!-- plotting major cities -->
-			{#each cities as city}
-				<!-- points -->
-				<rect
-					x={projection([+city.lng, +city.lat])[0]}
-					y={projection([+city.lng, +city.lat])[1]}
-					width="5px"
-					height="5px"
-					fill="steelblue"
-					class="cities"
-				/>
-				<!-- labels -->
-				<text
-					x={projection([+city.lng, +city.lat])[0]}
-					y={projection([+city.lng, +city.lat])[1]}
-					dx="10"
-					dy="7"
-					class="city-label"
-				>
-					{city.city.toUpperCase()}
-				</text>
-			{/each}
-		</svg>
-	</div>
-	<div class="map-container" id="scrolly">
+	<div class="map-container">
 		<svg>
 			<!-- oblasts -->
 			{#each geo as g}
@@ -328,8 +269,8 @@
 
 	.map-container {
 		text-align: center;
-		width: 840px;
-		height: 640px;
+		width: 100vw;
+		height: 100vh;
 		top: 15%;
 		margin: auto;
 		position: sticky;
