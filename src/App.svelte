@@ -6,6 +6,7 @@
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 	import Slider from "./Slider.svelte"; // hero slider image component
+	import Button from "./Button/svelte"; // reusable button component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -97,6 +98,12 @@
 		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
 	};
 
+	/*
+	const step0 = function () {
+		// default styles
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+	};*/
+
 	const step1 = function () {
 		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
 		svg
@@ -164,6 +171,8 @@
 <section>
 	<!-- a sticky base map -->
 	<div class="map-container">
+		<Button type="primary">Play</Button>
+
 		<svg>
 			<!-- oblasts -->
 			{#each geo as g}
