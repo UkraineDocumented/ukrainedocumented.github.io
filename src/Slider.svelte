@@ -1,11 +1,13 @@
 <script>
+	let before = "public/images/before.jpeg";
+	let after = "public/images/after.jpeg";
 </script>
 
 <section>
 	<div id="slider-container">
-		<img src="./assets/before.jpeg" alt="before" />
+		<img src={before} alt="before" />
 		<div id="layer">
-			<img src="./assets/after.jpeg" alt="after" />
+			<img src={after} alt="after" />
 		</div>
 	</div>
 </section>

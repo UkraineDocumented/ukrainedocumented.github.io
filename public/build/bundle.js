@@ -764,20 +764,20 @@ var app = (function () {
     			t = space();
     			div0 = element("div");
     			img1 = element("img");
-    			if (!src_url_equal(img0.src, img0_src_value = "./assets/before.jpeg")) attr_dev(img0, "src", img0_src_value);
+    			if (!src_url_equal(img0.src, img0_src_value = /*before*/ ctx[0])) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "before");
     			attr_dev(img0, "class", "svelte-sntmzd");
-    			add_location(img0, file$1, 5, 2, 61);
-    			if (!src_url_equal(img1.src, img1_src_value = "./assets/after.jpeg")) attr_dev(img1, "src", img1_src_value);
+    			add_location(img0, file$1, 7, 2, 145);
+    			if (!src_url_equal(img1.src, img1_src_value = /*after*/ ctx[1])) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "after");
     			attr_dev(img1, "class", "svelte-sntmzd");
-    			add_location(img1, file$1, 7, 3, 131);
+    			add_location(img1, file$1, 9, 3, 201);
     			attr_dev(div0, "id", "layer");
-    			add_location(div0, file$1, 6, 2, 111);
+    			add_location(div0, file$1, 8, 2, 181);
     			attr_dev(div1, "id", "slider-container");
     			attr_dev(div1, "class", "svelte-sntmzd");
-    			add_location(div1, file$1, 4, 1, 31);
-    			add_location(section, file$1, 3, 0, 20);
+    			add_location(div1, file$1, 6, 1, 115);
+    			add_location(section, file$1, 5, 0, 104);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -809,16 +809,29 @@ var app = (function () {
     	return block;
     }
 
-    function instance$1($$self, $$props) {
+    function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Slider', slots, []);
+    	let before = "public/images/before.jpeg";
+    	let after = "public/images/after.jpeg";
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Slider> was created with unknown prop '${key}'`);
     	});
 
-    	return [];
+    	$$self.$capture_state = () => ({ before, after });
+
+    	$$self.$inject_state = $$props => {
+    		if ('before' in $$props) $$invalidate(0, before = $$props.before);
+    		if ('after' in $$props) $$invalidate(1, after = $$props.after);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [before, after];
     }
 
     class Slider extends SvelteComponentDev {
