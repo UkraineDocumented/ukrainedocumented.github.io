@@ -6,6 +6,7 @@
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 	import Slider from "./Slider.svelte"; // hero slider image component
+	import Map from "./Map.svelte"; // reusable map component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -31,14 +32,14 @@
 	const colorF = "#f6bd60"; // yellow : hover color
 	const colorG = "#e76f51"; // orange : highlight color
 
+	/***********/
+	/*** MAP ***/
+	/***********/
+
 	/* main map container */
 	const w = 840;
 	const h = 640;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
-
-	/***********/
-	/*** MAP ***/
-	/***********/
 
 	/* map definitions */
 	const topo = topojson.feature(topoData, topoData.objects.UKR_adm1); // a topojson method that creates a geojson object
@@ -71,7 +72,7 @@
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
-		svg = d3.select("svg").attr("width", w).attr("height", h);
+		svg = d3.select("#scrolly").attr("width", w).attr("height", h);
 		points = svg
 			.selectAll(".point")
 			.data(ukraineData)
@@ -206,14 +207,13 @@
 
 <Slider />
 
-<section>
-	<div class="map-container" />
-</section>
+<Map />
+
 <!-- SCROLLY UKRAINE MAP -->
 <section>
 	<!-- a sticky base map -->
 	<div class="map-container">
-		<svg>
+		<svg id="scrolly">
 			<!-- oblasts -->
 			{#each geo as g}
 				<path d={path(g)} class="regions" />
