@@ -159,9 +159,8 @@
 	/>
 </svelte:head>
 
-<!-- SCROLLY UKRAINE MAP -->
 <Slider />
-
+<!-- SCROLLY UKRAINE MAP -->
 <section>
 	<!-- a sticky base map -->
 	<div class="map-container">
@@ -210,6 +209,11 @@
 </section>
 
 <style>
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+
 	/* TO DO: add variables for colors */
 
 	/* MAP STYLING */
@@ -217,7 +221,7 @@
 	.map-container {
 		width: 840px;
 		height: 640px;
-		top: 5%;
+		top: 10%;
 		margin: auto;
 		position: sticky;
 		padding: 20px;
