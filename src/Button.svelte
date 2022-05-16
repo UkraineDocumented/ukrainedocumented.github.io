@@ -1,3 +1,7 @@
+<script>
+	export let type = "play-button"; // a default value
+</script>
+
 <button class={type}>
 	<slot />
 </button>
@@ -9,16 +13,16 @@
 		border: none;
 		padding: 10px 15px;
 		text-decoration: none;
-	}
-
-	.primary {
-		background-color: #efeff0;
-		color: #70587c;
 		font-size: 14px;
 		font-family: "IBM Plex Mono", monospace;
 	}
 
-	.primary:hover {
+	.play-button {
+		background-color: #efeff0;
+		color: #70587c;
+	}
+
+	.play-button:hover {
 		background-color: #f6bd60;
 	}
 </style>

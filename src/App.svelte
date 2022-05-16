@@ -6,7 +6,7 @@
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 	import Slider from "./Slider.svelte"; // hero slider image component
-	import Button from "./Button/svelte"; // reusable button component
+	import Button from "./Button.svelte"; // reusable button component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -64,13 +64,20 @@
 		return projection([+d.long, +d.lat]) != null;
 	});
 
-	let svg;
+	let svgMap;
+	let svgScrolly;
 	let points;
+	let timelapse;
 	let tooltip;
+	let playBtn;
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
-		svg = d3.select("svg").attr("width", w).attr("height", h);
+		svgScrolly = d3
+			.select("#scrolly")
+			.select("svg")
+			.attr("width", w)
+			.attr("height", h);
 		points = svg
 			.selectAll(".point")
 			.data(ukraineData)
@@ -79,7 +86,48 @@
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
 			.attr("r", 3)
 			.attr("class", "point");
+		playBtn = d3.select(".play-button");
 	});
+
+	/***********************/
+	/*** PLOTTING POINTS ***/
+	/***********************/
+	/* adapted from: https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763 */
+
+	const start = new Date("02/15/22");
+	const end = new Date("04/19/22");
+	const numDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // denominator: # of miliseconds in a day
+	const formatTime = d3.timeFormat("%m/%d/%y"); // i.e. returns 02/14/22
+	const parseTime = d3.timeFormat("%B %e, %A"); // i.e. returns February 14, 2022
+
+	const xScale = d3
+		.scaleTime()
+		.domain([start, end])
+		.range([1, numDays])
+		.clamp(true); // allows the domain value to always be in range
+
+	function update(data, inverted) {
+		// filter and plot points in a timelapse fashion
+		let filtered = data.filter((d) => d.data <= formatTime(inverted));
+		timelapse = svg
+			.selectAll(".point")
+			.data(filtered)
+			.join((enter) =>
+				enter
+					.append("circle")
+					.attr("class", "point")
+					.attr("r", 3)
+					.transition()
+					.duration(400)
+					.attr("class", "pulse")
+					.transition()
+					.duration(400)
+					.attr("class", "point")
+			)
+			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
+			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
+		console.log(parseTime(inverted));
+	}
 
 	/***************/
 	/*** SCROLLY ***/
@@ -94,8 +142,30 @@
 	];
 
 	const step0 = function () {
-		// default styles
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+		let pointer = 1;
+
+		let timer;
+		let inverted;
+
+		playBtn.on("click", () => {
+			if (playBtn.text() == "Play" || playBtn.text() == "Restart") {
+				timer = setInterval(() => {
+					inverted = xScale.invert(pointer);
+					update(data, inverted);
+					if (pointer < numDays) {
+						pointer++; // increment pointer as long as the value is lower than total # of days
+					} else {
+						clearInterval(timer); // once the total # of days is reached, clear the timer
+						pointer = 1; // reset pointer
+						playBtn.text("Restart");
+					}
+				}, 500);
+				playBtn.text("Pause");
+			} else if (playBtn.text() == "Pause") {
+				clearInterval(timer);
+				playBtn.text("Play");
+			}
+		});
 	};
 
 	/*
@@ -115,8 +185,8 @@
 	};
 
 	const step2 = function () {
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svg
+		svgScrolly.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svgScrolly
 			.selectAll(".point")
 			.filter((d) => d.area_type === "Healthcare")
 			.style("fill", colorG)
@@ -125,8 +195,8 @@
 	};
 
 	const step3 = function () {
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svg
+		svgScrolly.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svgScrolly
 			.selectAll(".point")
 			.filter((d) => d.area_type === "Education or childcare")
 			.style("fill", colorG)
@@ -170,9 +240,38 @@
 <!-- SCROLLY UKRAINE MAP -->
 <section>
 	<!-- a sticky base map -->
-	<div class="map-container">
-		<Button type="primary">Play</Button>
-
+	<div class="map-container" id="timelapse">
+		<Button type="play-button">Play</Button>
+		<svg>
+			<!-- oblasts -->
+			{#each geo as g}
+				<path d={path(g)} class="regions" />
+			{/each}
+			<!-- plotting major cities -->
+			{#each cities as city}
+				<!-- points -->
+				<rect
+					x={projection([+city.lng, +city.lat])[0]}
+					y={projection([+city.lng, +city.lat])[1]}
+					width="5px"
+					height="5px"
+					fill="steelblue"
+					class="cities"
+				/>
+				<!-- labels -->
+				<text
+					x={projection([+city.lng, +city.lat])[0]}
+					y={projection([+city.lng, +city.lat])[1]}
+					dx="10"
+					dy="7"
+					class="city-label"
+				>
+					{city.city.toUpperCase()}
+				</text>
+			{/each}
+		</svg>
+	</div>
+	<div class="map-container" id="scrolly">
 		<svg>
 			<!-- oblasts -->
 			{#each geo as g}
@@ -228,9 +327,10 @@
 	/* MAP STYLING */
 
 	.map-container {
+		text-align: center;
 		width: 840px;
 		height: 640px;
-		top: 10%;
+		top: 15%;
 		margin: auto;
 		position: sticky;
 		padding: 20px;
@@ -265,6 +365,13 @@
 		opacity: 1;
 		stroke: #f6bd60; /* TO DO: fix stroke width/fill on hover */
 		stroke-width: 3px;
+	}
+
+	:global(.pulse) {
+		fill: #e76f51;
+		opacity: 0.35;
+		stroke: #f6bd60;
+		stroke-width: 10px;
 	}
 
 	/* STEP OVERLAY CONTENT STYLING */
