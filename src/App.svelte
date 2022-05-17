@@ -8,6 +8,7 @@
 	import Slider from "./Slider.svelte"; // hero slider image component
 	import Map from "./Map.svelte"; // timelapse map component
 	import Content from "./Content.svelte"; // reusable text content component
+	import Title from "./Title.svelte"; // title content component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -152,21 +153,30 @@
 	<!-- 
 		CSS rules to specify the families:
 		font-family: 'IBM Plex Mono', monospace;
+		font-family: 'Source Sans Pro', sans-serif;
 		font-family: 'Space Grotesk', sans-serif;
-		font-family: 'Spectral', serif;
 	-->
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,900;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
 		rel="stylesheet"
 	/>
 </svelte:head>
 
 <Slider />
 
-<Content><section>test</section></Content>
+<Title
+	title="Ukraine's Lost Cities, Documented"
+	byline="Christopher Giles and Elena Shao"
+/>
+<Content
+	subtitle=""
+	content="<p>Russia’s invasion of Ukraine has turned many areas to rubble and caused the deaths of thousands of people.</p> 
+	<p>Since Russia’s large-scale invasion of its neighbor, open-source researchers have been documenting these events by collating and verifying social media posts that show attacks.</p>
+	<p>According to this data collected by the Centre for Information Resilience, the destruction of civilian infrastructure is the most frequently recorded incident, accounting for over a third of events.</p>"
+/>
 
 <Map />
 
@@ -237,7 +247,8 @@
 		top: 15%;
 		margin: auto;
 		position: sticky;
-		padding: 20px;
+		padding-top: 20px;
+		overflow: hidden;
 	}
 
 	.regions {
@@ -276,6 +287,30 @@
 		opacity: 0.35;
 		stroke: #f6bd60;
 		stroke-width: 10px;
+	}
+
+	/* TOOLTIP STYLING */
+
+	/* TO DO: make tooltip its own component */
+	:global(#tooltip) {
+		position: absolute;
+		padding: 10px;
+		border-radius: 3px;
+		width: 200px;
+		background-color: #f8f9fa;
+		box-shadow: 0px 0px 5px #adb5bd;
+		pointer-events: none;
+		stroke: black;
+	}
+
+	:global(#tooltip p) {
+		font-family: "IBM Plex Mono", monospace;
+		margin: 0;
+		font-size: 12px;
+	}
+
+	:global(#tooltip.hidden) {
+		display: none;
 	}
 
 	/* STEP OVERLAY CONTENT STYLING */

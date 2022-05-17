@@ -1,40 +1,43 @@
 <script>
-	export let subtitle;
-	export let content;
+	export let title;
+	export let byline;
 </script>
 
 <section>
 	<div class="container">
-		<h2>{subtitle}</h2>
-		<p>{@html content}</p>
+		<h1>{title}</h1>
+		<p>By {byline}</p>
 	</div>
 </section>
 
 <style>
 	section {
+		padding-top: 20vh;
 		text-align: center;
 		width: 100vw;
 		overflow: hidden;
 	}
-	h2 {
+	h1 {
 		text-align: center;
 		margin: 10px;
-		padding-top: 20px;
-		font-size: 30px;
+		font-size: 50px;
 		font-weight: 700;
 		font-family: "Space Grotesk", sans-serif;
 	}
 	p {
-		text-align: left;
+		text-align: center;
+		text-align: center;
 		margin: 10px;
+		padding-top: 20px;
 		font-size: 18px;
-		font-family: "Source Sans Pro", sans-serif;
+		font-family: "IBM Plex Mono", monospace;
+		text-transform: uppercase;
 	}
 
 	.container {
 		text-align: center;
-		width: 650px;
+		width: 800px;
 		margin: auto;
-		position: sticky;
+		position: relative;
 	}
 </style>

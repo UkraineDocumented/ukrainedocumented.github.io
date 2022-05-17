@@ -74,21 +74,20 @@
 	function update(data, inverted) {
 		// filter and plot points in a timelapse fashion
 		let filtered = data.filter((d) => d.date <= formatTime(inverted));
-
 		timelapse = svg
-			.selectAll(".point")
+			.selectAll(".timelapse-point")
 			.data(filtered)
 			.join((enter) =>
 				enter
 					.append("circle")
-					.attr("class", "point")
+					.attr("class", "timelapse-point")
 					.attr("r", 3)
 					.transition()
 					.duration(400)
 					.attr("class", "pulse")
 					.transition()
 					.duration(400)
-					.attr("class", "point")
+					.attr("class", "timelapse-point")
 			)
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
@@ -169,11 +168,11 @@
 
 <style>
 	section {
-		height: 100vh;
 		text-align: center;
-		padding-top: 20vh;
+		width: 100vw;
+		overflow: hidden;
+		padding-top: 20px;
 	}
-
 	.timelapse-container {
 		text-align: center;
 		width: 100vw;
@@ -181,6 +180,11 @@
 		margin: auto;
 		position: sticky;
 		padding: 20px;
+	}
+
+	:global(.timelapse-point) {
+		fill: #7c6c83;
+		opacity: 0.65;
 	}
 
 	.regions {
