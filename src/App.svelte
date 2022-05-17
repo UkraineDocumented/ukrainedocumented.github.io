@@ -6,7 +6,8 @@
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
 	import Slider from "./Slider.svelte"; // hero slider image component
-	import Map from "./Map.svelte"; // reusable map component
+	import Map from "./Map.svelte"; // timelapse map component
+	import Content from "./Content.svelte"; // reusable text content component
 
 	/* import dependencies */
 	import { tweened } from "svelte/motion";
@@ -83,48 +84,6 @@
 			.attr("class", "point");
 		playBtn = d3.select(".play-button");
 	});
-
-	/***********************/
-	/*** PLOTTING POINTS ***/
-	/***********************/
-	/* adapted from: https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763 */
-
-	const start = new Date("02/15/22");
-	const end = new Date("04/19/22");
-	const numDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // denominator: # of miliseconds in a day
-	const formatTime = d3.timeFormat("%m/%d/%y"); // i.e. returns 02/14/22
-	const parseTime = d3.timeFormat("%B %e, %A"); // i.e. returns February 14, 2022
-
-	const xScale = d3
-		.scaleTime()
-		.domain([start, end])
-		.range([1, numDays])
-		.clamp(true); // allows the domain value to always be in range
-
-	function update(data, inverted) {
-		// filter and plot points in a timelapse fashion
-		let filtered = data.filter((d) => d.date <= formatTime(inverted));
-
-		console.log("filtered data", filtered);
-
-		timelapse = svg
-			.selectAll(".point")
-			.data(filtered)
-			.join((enter) =>
-				enter
-					.append("circle")
-					.attr("class", "point")
-					.attr("r", 3)
-					.transition()
-					.duration(400)
-					.attr("class", "pulse")
-					.transition()
-					.duration(400)
-					.attr("class", "point")
-			)
-			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
-			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
-	}
 
 	/***************/
 	/*** SCROLLY ***/
@@ -209,6 +168,8 @@
 
 <Map />
 
+<!-- TO DO: separate out into another component -->
+
 <!-- SCROLLY UKRAINE MAP -->
 <section>
 	<!-- a sticky base map -->
@@ -266,7 +227,7 @@
 	/* TO DO: add variables for colors */
 
 	/* MAP STYLING */
-
+	/* TO DO: add global styles for containers */
 	.map-container {
 		text-align: center;
 		width: 100vw;
