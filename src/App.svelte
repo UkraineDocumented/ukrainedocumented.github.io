@@ -166,6 +166,8 @@
 
 <Slider />
 
+<Content><section>test</section></Content>
+
 <Map />
 
 <!-- TO DO: separate out into another component -->
