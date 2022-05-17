@@ -12,8 +12,8 @@
 	import ukraineData from "./assets/ukraine-data.json";
 
 	let svg;
-	let points;
 	let timelapse;
+	let label;
 	let tooltip;
 	let playButton;
 	let timer;
@@ -62,6 +62,8 @@
 	const numDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // denominator: # of miliseconds in a day
 	const formatTime = d3.timeFormat("%m/%d/%y"); // i.e. returns 02/14/22
 	const parseTime = d3.timeFormat("%B %e, %A"); // i.e. returns February 14, 2022
+	const parseMonthDay = d3.timeFormat("%B %e"); // i.e.
+	const parseDayOfWeek = d3.timeFormat("%A"); // i.e. returns
 
 	const xScale = d3
 		.scaleTime()
@@ -72,8 +74,6 @@
 	function update(data, inverted) {
 		// filter and plot points in a timelapse fashion
 		let filtered = data.filter((d) => d.date <= formatTime(inverted));
-
-		console.log("filtered data", filtered);
 
 		timelapse = svg
 			.selectAll(".point")
@@ -92,12 +92,23 @@
 			)
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
+
+		//let monthDay = parseMonthDay(inverted);
+		//let dayOfWeek = parseDayOfWeek(inverted);
+
+		label.data(filtered).text(parseTime(inverted));
 	}
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("svg").attr("width", w).attr("height", h);
 		playButton = d3.select(".play-button");
+		label = svg
+			.append("text")
+			.text(parseTime(start))
+			.attr("id", "label")
+			.attr("x", m.left)
+			.attr("y", h - 3 * m.bottom);
 
 		playButton.on("click", function () {
 			const button = d3.select(this);
@@ -187,5 +198,16 @@
 		fill: #b29dbc;
 		font-size: 12px;
 		font-family: "IBM Plex Mono", monospace;
+	}
+
+	:global(#label) {
+		background-color: #efeff0;
+		font-weight: 600;
+		border: none;
+		padding: 10px 15px;
+		fill: #70587c;
+		font-size: 16px;
+		font-family: "IBM Plex Mono", monospace;
+		text-decoration: none;
 	}
 </style>
