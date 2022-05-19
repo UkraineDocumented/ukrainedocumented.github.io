@@ -28,7 +28,7 @@
 		text-align: left;
 		margin: 10px;
 		font-size: 18px;
-		font-family: "IBM Plex Sans", sans-serif;
+		font-family: "DM Sans", sans-serif;
 	}
 
 	.container {

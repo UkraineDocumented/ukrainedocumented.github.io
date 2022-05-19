@@ -23792,13 +23792,13 @@ var app = (function () {
     			t0 = text$1(/*subtitle*/ ctx[0]);
     			t1 = space();
     			p = element("p");
-    			attr_dev(h2, "class", "svelte-1b2dym2");
+    			attr_dev(h2, "class", "svelte-1km1mw2");
     			add_location(h2, file$2, 7, 2, 100);
-    			attr_dev(p, "class", "svelte-1b2dym2");
+    			attr_dev(p, "class", "svelte-1km1mw2");
     			add_location(p, file$2, 8, 2, 122);
-    			attr_dev(div, "class", "container svelte-1b2dym2");
+    			attr_dev(div, "class", "container svelte-1km1mw2");
     			add_location(div, file$2, 6, 1, 74);
-    			attr_dev(section, "class", "svelte-1b2dym2");
+    			attr_dev(section, "class", "svelte-1km1mw2");
     			add_location(section, file$2, 5, 0, 63);
     		},
     		l: function claim(nodes) {
@@ -24213,7 +24213,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (191:3) {#each geo as g}
+    // (192:3) {#each geo as g}
     function create_each_block_2(ctx) {
     	let path_1;
 
@@ -24222,7 +24222,7 @@ var app = (function () {
     			path_1 = svg_element("path");
     			attr_dev(path_1, "d", /*path*/ ctx[3](/*g*/ ctx[25]));
     			attr_dev(path_1, "class", "regions svelte-6c2x35");
-    			add_location(path_1, file, 191, 4, 5838);
+    			add_location(path_1, file, 192, 4, 5911);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -24237,14 +24237,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(191:3) {#each geo as g}",
+    		source: "(192:3) {#each geo as g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (195:3) {#each cities as city}
+    // (196:3) {#each cities as city}
     function create_each_block_1(ctx) {
     	let rect;
     	let text_1;
@@ -24262,13 +24262,13 @@ var app = (function () {
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
     			attr_dev(rect, "class", "cities svelte-6c2x35");
-    			add_location(rect, file, 196, 4, 5970);
+    			add_location(rect, file, 197, 4, 6043);
     			attr_dev(text_1, "x", /*projection*/ ctx[2]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[0]);
     			attr_dev(text_1, "y", /*projection*/ ctx[2]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
     			attr_dev(text_1, "class", "city-label svelte-6c2x35");
-    			add_location(text_1, file, 205, 4, 6178);
+    			add_location(text_1, file, 206, 4, 6251);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -24286,14 +24286,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(195:3) {#each cities as city}",
+    		source: "(196:3) {#each cities as city}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (221:2) {#each steps as text, i}
+    // (222:2) {#each steps as text, i}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
@@ -24306,10 +24306,10 @@ var app = (function () {
     			div0 = element("div");
     			t = space();
     			attr_dev(div0, "class", "step-content svelte-6c2x35");
-    			add_location(div0, file, 224, 4, 6666);
+    			add_location(div0, file, 225, 4, 6739);
     			attr_dev(div1, "class", "step svelte-6c2x35");
     			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[21]);
-    			add_location(div1, file, 223, 3, 6610);
+    			add_location(div1, file, 224, 3, 6683);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -24331,14 +24331,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(221:2) {#each steps as text, i}",
+    		source: "(222:2) {#each steps as text, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (220:1) <Scrolly bind:value={currentStep}>
+    // (221:1) <Scrolly bind:value={currentStep}>
     function create_default_slot(ctx) {
     	let each_1_anchor;
     	let each_value = /*steps*/ ctx[5];
@@ -24399,7 +24399,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(220:1) <Scrolly bind:value={currentStep}>",
+    		source: "(221:1) <Scrolly bind:value={currentStep}>",
     		ctx
     	});
 
@@ -24511,23 +24511,23 @@ var app = (function () {
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
     			attr_dev(link0, "class", "svelte-6c2x35");
-    			add_location(link0, file, 159, 1, 4532);
+    			add_location(link0, file, 160, 1, 4564);
     			attr_dev(link1, "rel", "preconnect");
     			attr_dev(link1, "href", "https://fonts.gstatic.com");
     			attr_dev(link1, "crossorigin", "");
     			attr_dev(link1, "class", "svelte-6c2x35");
-    			add_location(link1, file, 160, 1, 4595);
-    			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&display=swap");
+    			add_location(link1, file, 161, 1, 4627);
+    			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
     			attr_dev(link2, "class", "svelte-6c2x35");
-    			add_location(link2, file, 161, 1, 4667);
+    			add_location(link2, file, 162, 1, 4699);
     			attr_dev(svg_1, "id", "scrolly");
     			attr_dev(svg_1, "class", "svelte-6c2x35");
-    			add_location(svg_1, file, 188, 2, 5775);
+    			add_location(svg_1, file, 189, 2, 5848);
     			attr_dev(div, "class", "map-container svelte-6c2x35");
-    			add_location(div, file, 187, 1, 5745);
+    			add_location(div, file, 188, 1, 5818);
     			attr_dev(section, "class", "svelte-6c2x35");
-    			add_location(section, file, 185, 0, 5706);
+    			add_location(section, file, 186, 0, 5779);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
