@@ -1,20 +1,37 @@
 <script>
+	/* import dependencies */
+	import { onMount } from "svelte";
 	import * as d3 from "d3"; // D3.js
 
-	let beforeImg = "images/before.jpeg";
-	let afterImg = "images/after.jpeg";
+	/* images */
+	// images must be in the "public" folder to be accessible here
+	let beforeImg = "images/before.jpeg"; // path to before image
+	let afterImg = "images/after.jpeg"; //path to after image
+	let layer;
 
-	const before = d3.select("#before").node();
+	onMount(async () => {
+		// DOM elements are first available in onMount
+		layer = d3.select("#img-after"); // selecting the after image as the layer
+		d3.select(".container").on("mousemove", (event) => {
+			console.log(event.pageX);
+			// the following code "clips" the layer so only part of it is visible
+			layer.style("clip-path", `inset(0 0 0 ${event.pageX}px)`);
+		});
+	});
 </script>
 
 <section>
-	<div id="slider-container">
-		<div class="layer" id="before">
-			<img src={beforeImg} alt="before" />
-		</div>
-		<div class="layer" id="after">
-			<img src={afterImg} alt="after" />
-		</div>
+	<div class="container">
+		<div
+			class="layer"
+			id="img-before"
+			style="background-image: url({beforeImg});"
+		/>
+		<div
+			class="layer"
+			id="img-after"
+			style="background-image: url({afterImg});"
+		/>
 	</div>
 </section>
 
@@ -25,24 +42,26 @@
 		padding: 0px;
 		border: 0px;
 	}
-
-	#slider-container {
+	.container {
+		cursor: ew-resize;
 		position: relative;
-		width: 100vw;
+		overflow: visible;
 		height: 100vh;
-		overflow: hidden;
-		cursor: col-resize;
+		width: 100vw;
 	}
-
-	img {
-		display: block;
+	.container .layer {
+		height: 100vh;
+	}
+	:global(#img-before) {
+		max-width: 100vw;
+		min-width: 100vw;
 		position: absolute;
-		width: 100vw;
-		object-fit: cover;
+		background-size: 100% auto !important;
 	}
-
-	.layer {
-		overflow: hidden;
-		width: 100vw;
+	:global(#img-after) {
+		max-width: 100vw;
+		min-width: 100vw;
+		position: absolute;
+		background-size: 100% auto !important;
 	}
 </style>
