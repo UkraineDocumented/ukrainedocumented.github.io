@@ -22,13 +22,13 @@
 		padding-top: 20px;
 		font-size: 30px;
 		font-weight: 700;
-		font-family: "Space Grotesk", sans-serif;
+		font-family: "IBM Plex Sans", sans-serif;
 	}
 	p {
 		text-align: left;
 		margin: 10px;
 		font-size: 18px;
-		font-family: "Source Sans Pro", sans-serif;
+		font-family: "IBM Plex Sans", sans-serif;
 	}
 
 	.container {

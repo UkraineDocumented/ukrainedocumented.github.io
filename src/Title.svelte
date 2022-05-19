@@ -22,7 +22,7 @@
 		margin: 10px;
 		font-size: 50px;
 		font-weight: 700;
-		font-family: "Space Grotesk", sans-serif;
+		font-family: "DM Sans", sans-serif;
 	}
 	p {
 		text-align: center;

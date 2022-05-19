@@ -3,6 +3,9 @@
 	import { onMount } from "svelte";
 	import * as d3 from "d3"; // D3.js
 
+	/* import sub-components */
+	import Lede from "./Lede.svelte";
+
 	/* images */
 	// images must be in the "public" folder to be accessible here
 	let beforeImg = "images/before.jpeg"; // path to before image
@@ -32,17 +35,25 @@
 			id="img-after"
 			style="background-image: url({afterImg});"
 		/>
+		<Lede
+			content="Russia’s invasion of Ukraine has turned many areas to rubble and caused the deaths of thousands of people. TKTK user-generated content."
+		/>
 	</div>
 </section>
 
 <style>
 	*,
 	section {
+		display: flex;
+		text-align: center;
+		justify-content: center;
 		margin: 0px;
 		padding: 0px;
 		border: 0px;
 	}
 	.container {
+		text-align: center;
+		justify-content: center;
 		cursor: ew-resize;
 		position: relative;
 		overflow: visible;
@@ -52,13 +63,13 @@
 	.container .layer {
 		height: 100vh;
 	}
-	:global(#img-before) {
+	#img-before {
 		max-width: 100vw;
 		min-width: 100vw;
 		position: absolute;
 		background-size: 100% auto !important;
 	}
-	:global(#img-after) {
+	#img-after {
 		max-width: 100vw;
 		min-width: 100vw;
 		position: absolute;
