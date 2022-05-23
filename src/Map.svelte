@@ -1,5 +1,7 @@
 <script>
-	import Button from "./Button.svelte"; // reusable button component
+	/* import sub-components */
+	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
+	import Panel from "./Panel.svelte"; // reusable panel component
 
 	/* import dependencies */
 	import { onMount } from "svelte";
@@ -11,18 +13,14 @@
 	import citiesData from "./assets/ukraine-cities.json";
 	import ukraineData from "./assets/ukraine-data.json";
 
-	let svg;
-	let timelapse;
-	let label;
-	let tooltip;
-	let playButton;
-	let timer;
-	let inverted;
-	let pointer = 1;
-
-	/***********/
-	/*** MAP ***/
-	/***********/
+	/* colors */
+	const colorA = "#efeff0"; // whitish : background color
+	const colorB = "#d5cad6"; // grayish : region border color
+	const colorC = "#b29dbc"; // muted purple : label and point color
+	const colorD = "#7c6c83"; // dark purple : heading color
+	const colorE = "#adb5bd"; // light gray : box shadow color
+	const colorF = "#f6bd60"; // yellow : hover color
+	const colorG = "#e76f51"; // orange : highlight color
 
 	/* main map container */
 	const w = 840;
@@ -52,90 +50,91 @@
 		return projection([+d.long, +d.lat]) != null;
 	});
 
-	/***********************/
-	/*** PLOTTING POINTS ***/
-	/***********************/
-	/* adapted from: https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763 */
-
-	const start = new Date("02/15/22");
-	const end = new Date("04/19/22");
-	const numDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // denominator: # of miliseconds in a day
-	const formatTime = d3.timeFormat("%m/%d/%y"); // i.e. returns 02/14/22
-	const parseTime = d3.timeFormat("%B %e, %A"); // i.e. returns February 14, 2022
-	const parseMonthDay = d3.timeFormat("%B %e"); // i.e.
-	const parseDayOfWeek = d3.timeFormat("%A"); // i.e. returns
-
-	const xScale = d3
-		.scaleTime()
-		.domain([start, end])
-		.range([1, numDays])
-		.clamp(true); // allows the domain value to always be in range
-
-	function update(data, inverted) {
-		// filter and plot points in a timelapse fashion
-		let filtered = data.filter((d) => d.date <= formatTime(inverted));
-		timelapse = svg
-			.selectAll(".timelapse-point")
-			.data(filtered)
-			.join((enter) =>
-				enter
-					.append("circle")
-					.attr("class", "timelapse-point")
-					.attr("r", 3)
-					.transition()
-					.duration(400)
-					.attr("class", "pulse")
-					.transition()
-					.duration(400)
-					.attr("class", "timelapse-point")
-			)
-			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
-			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
-
-		//let monthDay = parseMonthDay(inverted);
-		//let dayOfWeek = parseDayOfWeek(inverted);
-
-		label.data(filtered).text(parseTime(inverted));
-	}
-
+	let svg;
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
-		svg = d3.select("svg").attr("width", w).attr("height", h);
-		playButton = d3.select(".play-button");
-		label = svg
-			.append("text")
-			.text(parseTime(start))
-			.attr("id", "label")
-			.attr("x", m.left)
-			.attr("y", h - 3 * m.bottom);
-
-		playButton.on("click", function () {
-			const button = d3.select(this);
-			if (button.text() == "Play" || button.text() == "Restart") {
-				timer = setInterval(function () {
-					inverted = xScale.invert(pointer);
-					update(data, inverted);
-					if (pointer < numDays) {
-						pointer++;
-					} else {
-						clearInterval(timer);
-						pointer = 1;
-						button.text("Restart");
-					}
-				}, 500);
-				button.text("Pause");
-			} else {
-				clearInterval(timer);
-				button.text("Play");
-			}
-		});
+		svg = d3.select("#scrolly").attr("width", w).attr("height", h);
+		points = svg
+			.selectAll(".point")
+			.data(ukraineData)
+			.join("circle")
+			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
+			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
+			.attr("r", 3)
+			.attr("class", "point");
+		playBtn = d3.select(".play-button");
 	});
+
+	let currentStep;
+	const steps = [
+		"<p>Damage to civilian infrastructure</p>",
+		"<p>Residential buildings</p>",
+		"<p>Hospitals and healthcare providers</p>",
+		"<p>Education or childcare</p>",
+		"<p>TEST</p>",
+	];
+
+	const step0 = function () {
+		// default styles
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+	};
+
+	const step1 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Residential")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	const step2 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Healthcare")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	const step3 = function () {
+		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		svg
+			.selectAll(".point")
+			.filter((d) => d.area_type === "Education or childcare")
+			.style("fill", colorG)
+			.style("opacity", 1)
+			.attr("r", 4);
+	};
+
+	const step4 = function () {};
+
+	/* run code reactively based on scroll position */
+
+	// this "if...else" block will run every time the variable currentStep
+	// changes and evaluate differently based on the variable's value
+	$: if (currentStep == 0) {
+		step0();
+	} else if (currentStep == 1) {
+		step1();
+	} else if (currentStep == 2) {
+		step2();
+	} else if (currentStep == 3) {
+		step3();
+	} else if (currentStep == 4) {
+		step4();
+	}
 </script>
 
+<!-- TO DO: separate out into another component -->
+
+<!-- SCROLLY UKRAINE MAP -->
 <section>
-	<Button type="play-button">Play</Button>
-	<div class="timelapse-container">
-		<svg>
+	<!-- a sticky base map -->
+	<div class="map-container">
+		<svg id="scrolly">
 			<!-- oblasts -->
 			{#each geo as g}
 				<path d={path(g)} class="regions" />
@@ -164,27 +163,40 @@
 			{/each}
 		</svg>
 	</div>
+
+	<!-- a scrolly container -->
+	<Scrolly bind:value={currentStep}>
+		{#each steps as text, i}
+			<!-- set an "active" class to the step content if the "currentStep" is 
+      equal to the step index -->
+			<div class="step" class:active={currentStep === i}>
+				<div class="step-content">
+					{@html text}
+				</div>
+			</div>
+		{/each}
+	</Scrolly>
 </section>
 
 <style>
-	section {
-		text-align: center;
-		width: 100vw;
-		overflow: hidden;
-		padding-top: 20px;
+	:global(body) {
+		margin: 0px;
+		padding: 0px;
 	}
-	.timelapse-container {
+
+	/* TO DO: add variables for colors */
+
+	/* MAP STYLING */
+	/* TO DO: add global styles for containers */
+	.map-container {
 		text-align: center;
 		width: 100vw;
 		height: 100vh;
+		top: 15%;
 		margin: auto;
 		position: sticky;
-		padding: 20px;
-	}
-
-	:global(.timelapse-point) {
-		fill: #7c6c83;
-		opacity: 0.65;
+		padding-top: 20px;
+		overflow: hidden;
 	}
 
 	.regions {
@@ -204,14 +216,80 @@
 		font-family: "IBM Plex Mono", monospace;
 	}
 
-	:global(#label) {
-		background-color: #efeff0;
-		font-weight: 600;
-		border: none;
-		padding: 10px 15px;
-		fill: #70587c;
-		font-size: 16px;
+	/* POINTS STYLING */
+
+	:global(.point) {
+		fill: #7c6c83;
+		opacity: 0.65;
+	}
+
+	:global(.point:hover) {
+		fill: #f6bd60;
+		opacity: 1;
+		stroke: #f6bd60; /* TO DO: fix stroke width/fill on hover */
+		stroke-width: 3px;
+	}
+
+	:global(.pulse) {
+		fill: #e76f51;
+		opacity: 0.35;
+		stroke: #f6bd60;
+		stroke-width: 10px;
+	}
+
+	/* TOOLTIP STYLING */
+
+	/* TO DO: make tooltip its own component */
+	:global(#tooltip) {
+		position: absolute;
+		padding: 10px;
+		border-radius: 3px;
+		width: 200px;
+		background-color: #f8f9fa;
+		box-shadow: 0px 0px 5px #adb5bd;
+		pointer-events: none;
+		stroke: black;
+	}
+
+	:global(#tooltip p) {
 		font-family: "IBM Plex Mono", monospace;
-		text-decoration: none;
+		margin: 0;
+		font-size: 12px;
+	}
+
+	:global(#tooltip.hidden) {
+		display: none;
+	}
+
+	/* STEP OVERLAY CONTENT STYLING */
+
+	/* the container for each step */
+	.step {
+		height: 80vh;
+		display: flex;
+		place-items: center;
+		justify-content: center;
+	}
+
+	/* the content for each step */
+	.step-content {
+		background-color: #efeff0;
+		color: #ccc;
+		font-family: "IBM Plex Mono", monospace;
+		font-size: 12px;
+		border-radius: 5px;
+		padding: 0.5rem 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		transition: background 500ms ease;
+		box-shadow: 1px 1px 5px #adb5bd;
+		z-index: 10;
+	}
+
+	/* this makes the element stand out if it is active */
+	.step.active .step-content {
+		background: white;
+		color: black;
 	}
 </style>
