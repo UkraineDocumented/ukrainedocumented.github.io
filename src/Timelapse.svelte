@@ -1,5 +1,6 @@
 <script>
 	import Button from "./Button.svelte"; // reusable button component
+	import Panel from "./Panel.svelte"; // reusable panel component
 
 	/* import dependencies */
 	import { onMount } from "svelte";
@@ -57,7 +58,7 @@
 	/***********************/
 	/* adapted from: https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763 */
 
-	const start = new Date("02/15/22");
+	const start = new Date("02/24/22");
 	const end = new Date("04/19/22");
 	const numDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // denominator: # of miliseconds in a day
 	const formatTime = d3.timeFormat("%m/%d/%y"); // i.e. returns 02/14/22
@@ -83,10 +84,10 @@
 					.attr("class", "timelapse-point")
 					.attr("r", 3)
 					.transition()
-					.duration(400)
+					.duration(300)
 					.attr("class", "pulse")
 					.transition()
-					.duration(400)
+					.duration(300)
 					.attr("class", "timelapse-point")
 			)
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
@@ -122,7 +123,7 @@
 						pointer = 1;
 						button.text("Restart");
 					}
-				}, 500);
+				}, 450);
 				button.text("Pause");
 			} else {
 				clearInterval(timer);

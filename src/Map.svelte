@@ -1,7 +1,6 @@
 <script>
 	/* import sub-components */
 	import Scrolly from "./Scrolly.svelte"; // Russell Goldenberg's Scrolly component
-	import Panel from "./Panel.svelte"; // reusable panel component
 
 	/* import dependencies */
 	import { onMount } from "svelte";
@@ -51,6 +50,7 @@
 	});
 
 	let svg;
+	let points;
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("#scrolly").attr("width", w).attr("height", h);
@@ -62,7 +62,6 @@
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
 			.attr("r", 3)
 			.attr("class", "point");
-		playBtn = d3.select(".play-button");
 	});
 
 	let currentStep;
@@ -71,7 +70,6 @@
 		"<p>Residential buildings</p>",
 		"<p>Hospitals and healthcare providers</p>",
 		"<p>Education or childcare</p>",
-		"<p>TEST</p>",
 	];
 
 	const step0 = function () {
@@ -123,8 +121,6 @@
 		step2();
 	} else if (currentStep == 3) {
 		step3();
-	} else if (currentStep == 4) {
-		step4();
 	}
 </script>
 
