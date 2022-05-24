@@ -51,6 +51,7 @@
 
 	let svg;
 	let points;
+
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("#scrolly").attr("width", w).attr("height", h);
@@ -59,52 +60,46 @@
 			.data(ukraineData)
 			.join("circle")
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
-			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
-			.attr("r", 3)
-			.attr("class", "point");
+			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
 	});
 
 	let currentStep;
 	const steps = [
-		"<p>Damage to civilian infrastructure</p>",
-		"<p>Residential buildings</p>",
-		"<p>Hospitals and healthcare providers</p>",
+		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color='colorG'><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
+		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='https://cdn4.telegram-cdn.org/file/RdgjMQ5wy6ncOSoRzmNAtqwuS5kVrxT2ZIG63KNMy6M6UJD1ByTOh50j2iztz5JLtuG2lsIRTDsZ8Sgv2BRGw8VFOdCEL4tdsFrkqBnzW50fpoOFEu4jxnzqJOW-ofUowomB4YN_ruq_Ep0fgvIihns6-gvpBhQrz9TCzLft6dB1AL45n3MU5euXuYst5XjEBpMJ5qelpj9VWp32yrMTX4IDSSXngKFXTlaThCtuyCKyFacquODcB-tvpFzNsoxyiscX32G7wu6YJ-X9ZM-_fhgUIIWzax_0TMaViMy0AXbaWTYVrvAVGwDaJQeWWsXH8eWsuZsTsB22ad5XhScufw.jpg' width='100%'><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
+		"teset",
 		"<p>Education or childcare</p>",
 	];
 
 	const step0 = function () {
-		// default styles
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+		points.style("visibility", "visible");
+		points.style("opacity", 0.65);
+		points
+			.filter((d) => d.area_type != "Residential")
+			.attr("r", 3)
+			.attr("class", "point");
+		points
+			.filter((d) => d.area_type === "Residential")
+			.style("fill", colorG)
+			.attr("r", 3);
 	};
 
 	const step1 = function () {
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svg
-			.selectAll(".point")
-			.filter((d) => d.area_type === "Residential")
+		points.style("visibility", "hidden");
+		points
+			.filter((d) => d.id === "UW3612")
 			.style("fill", colorG)
 			.style("opacity", 1)
-			.attr("r", 4);
+			.style("visibility", "visible")
+			.attr("r", 5);
 	};
 
 	const step2 = function () {
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svg
-			.selectAll(".point")
-			.filter((d) => d.area_type === "Healthcare")
-			.style("fill", colorG)
-			.style("opacity", 1)
-			.attr("r", 4);
+		//svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
 	};
 
 	const step3 = function () {
-		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-		svg
-			.selectAll(".point")
-			.filter((d) => d.area_type === "Education or childcare")
-			.style("fill", colorG)
-			.style("opacity", 1)
-			.attr("r", 4);
+		//svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
 	};
 
 	const step4 = function () {};
@@ -179,7 +174,6 @@
 		margin: 0px;
 		padding: 0px;
 	}
-
 	/* TO DO: add variables for colors */
 
 	/* MAP STYLING */
@@ -215,15 +209,9 @@
 	/* POINTS STYLING */
 
 	:global(.point) {
+		position: absolute;
 		fill: #7c6c83;
 		opacity: 0.65;
-	}
-
-	:global(.point:hover) {
-		fill: #f6bd60;
-		opacity: 1;
-		stroke: #f6bd60; /* TO DO: fix stroke width/fill on hover */
-		stroke-width: 3px;
 	}
 
 	:global(.pulse) {
@@ -233,35 +221,11 @@
 		stroke-width: 10px;
 	}
 
-	/* TOOLTIP STYLING */
-
-	/* TO DO: make tooltip its own component */
-	:global(#tooltip) {
-		position: absolute;
-		padding: 10px;
-		border-radius: 3px;
-		width: 200px;
-		background-color: #f8f9fa;
-		box-shadow: 0px 0px 5px #adb5bd;
-		pointer-events: none;
-		stroke: black;
-	}
-
-	:global(#tooltip p) {
-		font-family: "IBM Plex Mono", monospace;
-		margin: 0;
-		font-size: 12px;
-	}
-
-	:global(#tooltip.hidden) {
-		display: none;
-	}
-
 	/* STEP OVERLAY CONTENT STYLING */
 
 	/* the container for each step */
 	.step {
-		height: 80vh;
+		height: 100vh;
 		display: flex;
 		place-items: center;
 		justify-content: center;
@@ -269,15 +233,17 @@
 
 	/* the content for each step */
 	.step-content {
+		width: 500px;
 		background-color: #efeff0;
 		color: #ccc;
-		font-family: "IBM Plex Mono", monospace;
-		font-size: 12px;
+		font-family: "Public Sans", sans-serif;
+		font-size: 1rem;
+		line-height: 1.25rem;
 		border-radius: 5px;
-		padding: 0.5rem 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		padding: 20px;
 		transition: background 500ms ease;
 		box-shadow: 1px 1px 5px #adb5bd;
 		z-index: 10;
@@ -287,5 +253,16 @@
 	.step.active .step-content {
 		background: white;
 		color: black;
+	}
+
+	.panel {
+		position: absolute;
+		padding: 10px;
+		border-radius: 3px;
+		width: 200px;
+		background-color: #f8f9fa;
+		box-shadow: 0px 0px 5px #adb5bd;
+		pointer-events: none;
+		stroke: black;
 	}
 </style>

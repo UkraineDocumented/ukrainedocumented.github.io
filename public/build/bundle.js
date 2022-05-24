@@ -23170,7 +23170,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (138:1) <Button type="play-button">
+    // (137:1) <Button type="play-button">
     function create_default_slot$1(ctx) {
     	let t;
 
@@ -23190,14 +23190,14 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(138:1) <Button type=\\\"play-button\\\">",
+    		source: "(137:1) <Button type=\\\"play-button\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:3) {#each geo as g}
+    // (141:3) {#each geo as g}
     function create_each_block_1$1(ctx) {
     	let path_1;
 
@@ -23205,8 +23205,8 @@ var app = (function () {
     		c: function create() {
     			path_1 = svg_element("path");
     			attr_dev(path_1, "d", /*path*/ ctx[2](/*g*/ ctx[27]));
-    			attr_dev(path_1, "class", "regions svelte-4bmkef");
-    			add_location(path_1, file$5, 142, 4, 4073);
+    			attr_dev(path_1, "class", "regions svelte-1ct7bcm");
+    			add_location(path_1, file$5, 141, 4, 4054);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -23221,14 +23221,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(142:3) {#each geo as g}",
+    		source: "(141:3) {#each geo as g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (146:3) {#each cities as city}
+    // (145:3) {#each cities as city}
     function create_each_block$1(ctx) {
     	let rect;
     	let text_1;
@@ -23245,14 +23245,14 @@ var app = (function () {
     			attr_dev(rect, "width", "5px");
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
-    			attr_dev(rect, "class", "cities svelte-4bmkef");
-    			add_location(rect, file$5, 147, 4, 4205);
+    			attr_dev(rect, "class", "cities svelte-1ct7bcm");
+    			add_location(rect, file$5, 146, 4, 4186);
     			attr_dev(text_1, "x", /*projection*/ ctx[1]([+/*city*/ ctx[24].lng, +/*city*/ ctx[24].lat])[0]);
     			attr_dev(text_1, "y", /*projection*/ ctx[1]([+/*city*/ ctx[24].lng, +/*city*/ ctx[24].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
-    			attr_dev(text_1, "class", "city-label svelte-4bmkef");
-    			add_location(text_1, file$5, 156, 4, 4413);
+    			attr_dev(text_1, "class", "city-label svelte-1ct7bcm");
+    			add_location(text_1, file$5, 155, 4, 4394);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -23270,7 +23270,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(146:3) {#each cities as city}",
+    		source: "(145:3) {#each cities as city}",
     		ctx
     	});
 
@@ -23329,11 +23329,11 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(svg_1, file$5, 139, 2, 4023);
-    			attr_dev(div, "class", "timelapse-container svelte-4bmkef");
-    			add_location(div, file$5, 138, 1, 3987);
-    			attr_dev(section, "class", "svelte-4bmkef");
-    			add_location(section, file$5, 136, 0, 3934);
+    			add_location(svg_1, file$5, 138, 2, 4004);
+    			attr_dev(div, "class", "timelapse-container svelte-1ct7bcm");
+    			add_location(div, file$5, 137, 1, 3968);
+    			attr_dev(section, "class", "svelte-1ct7bcm");
+    			add_location(section, file$5, 135, 0, 3915);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23493,7 +23493,7 @@ var app = (function () {
     		// filter and plot points in a timelapse fashion
     		let filtered = data.filter(d => d.date <= formatTime(inverted));
 
-    		timelapse = svg.selectAll(".timelapse-point").data(filtered).join(enter => enter.append("circle").attr("class", "timelapse-point").attr("r", 3).text("test").transition().duration(300).attr("class", "pulse").transition().duration(300).attr("class", "timelapse-point")).attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]); // TO DO: make sure looping correctly
+    		timelapse = svg.selectAll(".timelapse-point").data(filtered).join(enter => enter.append("circle").attr("class", "timelapse-point").attr("r", 3).transition().duration(300).attr("class", "pulse").transition().duration(300).attr("class", "timelapse-point")).attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]); // TO DO: make sure looping correctly
 
     		//let monthDay = parseMonthDay(inverted);
     		//let dayOfWeek = parseDayOfWeek(inverted);
@@ -24161,7 +24161,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (135:3) {#each geo as g}
+    // (130:3) {#each geo as g}
     function create_each_block_2(ctx) {
     	let path_1;
 
@@ -24169,8 +24169,8 @@ var app = (function () {
     		c: function create() {
     			path_1 = svg_element("path");
     			attr_dev(path_1, "d", /*path*/ ctx[3](/*g*/ ctx[23]));
-    			attr_dev(path_1, "class", "regions svelte-t1omkt");
-    			add_location(path_1, file$1, 135, 4, 3942);
+    			attr_dev(path_1, "class", "regions svelte-vl0skl");
+    			add_location(path_1, file$1, 130, 4, 4827);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -24185,14 +24185,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(135:3) {#each geo as g}",
+    		source: "(130:3) {#each geo as g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (139:3) {#each cities as city}
+    // (134:3) {#each cities as city}
     function create_each_block_1(ctx) {
     	let rect;
     	let text_1;
@@ -24209,14 +24209,14 @@ var app = (function () {
     			attr_dev(rect, "width", "5px");
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
-    			attr_dev(rect, "class", "cities svelte-t1omkt");
-    			add_location(rect, file$1, 140, 4, 4074);
+    			attr_dev(rect, "class", "cities svelte-vl0skl");
+    			add_location(rect, file$1, 135, 4, 4959);
     			attr_dev(text_1, "x", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[0]);
     			attr_dev(text_1, "y", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
-    			attr_dev(text_1, "class", "city-label svelte-t1omkt");
-    			add_location(text_1, file$1, 149, 4, 4282);
+    			attr_dev(text_1, "class", "city-label svelte-vl0skl");
+    			add_location(text_1, file$1, 144, 4, 5167);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -24234,14 +24234,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(139:3) {#each cities as city}",
+    		source: "(134:3) {#each cities as city}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (165:2) {#each steps as text, i}
+    // (160:2) {#each steps as text, i}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
@@ -24253,11 +24253,11 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "class", "step-content svelte-t1omkt");
-    			add_location(div0, file$1, 168, 4, 4770);
-    			attr_dev(div1, "class", "step svelte-t1omkt");
+    			attr_dev(div0, "class", "step-content svelte-vl0skl");
+    			add_location(div0, file$1, 163, 4, 5655);
+    			attr_dev(div1, "class", "step svelte-vl0skl");
     			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[19]);
-    			add_location(div1, file$1, 167, 3, 4714);
+    			add_location(div1, file$1, 162, 3, 5599);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -24279,14 +24279,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(165:2) {#each steps as text, i}",
+    		source: "(160:2) {#each steps as text, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (164:1) <Scrolly bind:value={currentStep}>
+    // (159:1) <Scrolly bind:value={currentStep}>
     function create_default_slot(ctx) {
     	let each_1_anchor;
     	let each_value = /*steps*/ ctx[5];
@@ -24347,7 +24347,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(164:1) <Scrolly bind:value={currentStep}>",
+    		source: "(159:1) <Scrolly bind:value={currentStep}>",
     		ctx
     	});
 
@@ -24414,10 +24414,10 @@ var app = (function () {
     			t = space();
     			create_component(scrolly.$$.fragment);
     			attr_dev(svg_1, "id", "scrolly");
-    			add_location(svg_1, file$1, 132, 2, 3879);
-    			attr_dev(div, "class", "map-container svelte-t1omkt");
-    			add_location(div, file$1, 131, 1, 3849);
-    			add_location(section, file$1, 129, 0, 3810);
+    			add_location(svg_1, file$1, 127, 2, 4764);
+    			attr_dev(div, "class", "map-container svelte-vl0skl");
+    			add_location(div, file$1, 126, 1, 4734);
+    			add_location(section, file$1, 124, 0, 4695);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24574,37 +24574,37 @@ var app = (function () {
     		// DOM elements are first accessible inside onMount
     		svg = select("#scrolly").attr("width", w).attr("height", h);
 
-    		points = svg.selectAll(".point").data(ukraineData).join("circle").attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]).attr("r", 3).attr("class", "point"); // TO DO: make sure looping correctly
+    		points = svg.selectAll(".point").data(ukraineData).join("circle").attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]); // TO DO: make sure looping correctly
     	});
 
     	let currentStep;
 
     	const steps = [
-    		"<p>Damage to civilian infrastructure</p>",
-    		"<p>Residential buildings</p>",
-    		"<p>Hospitals and healthcare providers</p>",
+    		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color='colorG'><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
+    		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='https://cdn4.telegram-cdn.org/file/RdgjMQ5wy6ncOSoRzmNAtqwuS5kVrxT2ZIG63KNMy6M6UJD1ByTOh50j2iztz5JLtuG2lsIRTDsZ8Sgv2BRGw8VFOdCEL4tdsFrkqBnzW50fpoOFEu4jxnzqJOW-ofUowomB4YN_ruq_Ep0fgvIihns6-gvpBhQrz9TCzLft6dB1AL45n3MU5euXuYst5XjEBpMJ5qelpj9VWp32yrMTX4IDSSXngKFXTlaThCtuyCKyFacquODcB-tvpFzNsoxyiscX32G7wu6YJ-X9ZM-_fhgUIIWzax_0TMaViMy0AXbaWTYVrvAVGwDaJQeWWsXH8eWsuZsTsB22ad5XhScufw.jpg' width='100%'><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
+    		"teset",
     		"<p>Education or childcare</p>"
     	];
 
     	const step0 = function () {
-    		// default styles
-    		svg.selectAll(".point").style("fill", colorD).attr("r", 3);
+    		points.style("visibility", "visible");
+    		points.style("opacity", 0.65);
+    		points.filter(d => d.area_type != "Residential").attr("r", 3).attr("class", "point");
+    		points.filter(d => d.area_type === "Residential").style("fill", colorG).attr("r", 3);
     	};
 
     	const step1 = function () {
-    		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-    		svg.selectAll(".point").filter(d => d.area_type === "Residential").style("fill", colorG).style("opacity", 1).attr("r", 4);
+    		points.style("visibility", "hidden");
+    		points.filter(d => d.id === "UW3612").style("fill", colorG).style("opacity", 1).style("visibility", "visible").attr("r", 5);
     	};
 
     	const step2 = function () {
-    		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-    		svg.selectAll(".point").filter(d => d.area_type === "Healthcare").style("fill", colorG).style("opacity", 1).attr("r", 4);
-    	};
+    		
+    	}; //svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
 
     	const step3 = function () {
-    		svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-    		svg.selectAll(".point").filter(d => d.area_type === "Education or childcare").style("fill", colorG).style("opacity", 1).attr("r", 4);
-    	};
+    		
+    	}; //svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
 
     	const step4 = function () {
     		
@@ -24677,11 +24677,7 @@ var app = (function () {
     				step0();
     			} else if (currentStep == 1) {
     				step1();
-    			} else if (currentStep == 2) {
-    				step2();
-    			} else if (currentStep == 3) {
-    				step3();
-    			}
+    			} else ;
     		}
     	};
 
@@ -24714,10 +24710,12 @@ var app = (function () {
     	let t1;
     	let title;
     	let t2;
-    	let content;
+    	let content0;
     	let t3;
     	let timelapse;
     	let t4;
+    	let content1;
+    	let t5;
     	let map;
     	let current;
 
@@ -24738,15 +24736,24 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	content = new Content({
+    	content0 = new Content({
     			props: {
     				subtitle: "",
-    				content: "<p>More than 3,600 civilians have been killed in the 12 weeks since Russia first began its invasion of Ukraine, including more than 240 children, according to the  United Nations high commissioner for human rights. Over 1,500 civilian structures have been damaged or toppled, including hospitals, childcare centers, schools and shopping centers.</p> \n\t<p>Ukrainian residents have been documenting and recording the attacks that have obliterated parts of their country, posting videos and images on social media sites like Twitter, Telegram and YouTube.</p>\n\t<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href='https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine'>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
+    				content: "<p>More than 3,600 civilians have been killed in the 12 weeks since Russia first began its invasion of Ukraine, including more than 240 children, according to the  United Nations high commissioner for human rights.</p>\n\t<p>Over 1,500 civilian structures have been damaged or toppled, including hospitals, childcare centers, schools and shopping centers.</p> "
     			},
     			$$inline: true
     		});
 
     	timelapse = new Timelapse({ $$inline: true });
+
+    	content1 = new Content({
+    			props: {
+    				subtitle: "",
+    				content: "<p>Ukrainian residents have been documenting and recording the attacks that have obliterated parts of their country, posting videos and images on social media sites like Twitter, Telegram and YouTube.</p>\n\t<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href='https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine'>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
+    			},
+    			$$inline: true
+    		});
+
     	map = new Map$1({ $$inline: true });
 
     	const block = {
@@ -24759,10 +24766,12 @@ var app = (function () {
     			t1 = space();
     			create_component(title.$$.fragment);
     			t2 = space();
-    			create_component(content.$$.fragment);
+    			create_component(content0.$$.fragment);
     			t3 = space();
     			create_component(timelapse.$$.fragment);
     			t4 = space();
+    			create_component(content1.$$.fragment);
+    			t5 = space();
     			create_component(map.$$.fragment);
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
@@ -24787,10 +24796,12 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     			mount_component(title, target, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(content, target, anchor);
+    			mount_component(content0, target, anchor);
     			insert_dev(target, t3, anchor);
     			mount_component(timelapse, target, anchor);
     			insert_dev(target, t4, anchor);
+    			mount_component(content1, target, anchor);
+    			insert_dev(target, t5, anchor);
     			mount_component(map, target, anchor);
     			current = true;
     		},
@@ -24799,16 +24810,18 @@ var app = (function () {
     			if (current) return;
     			transition_in(slider.$$.fragment, local);
     			transition_in(title.$$.fragment, local);
-    			transition_in(content.$$.fragment, local);
+    			transition_in(content0.$$.fragment, local);
     			transition_in(timelapse.$$.fragment, local);
+    			transition_in(content1.$$.fragment, local);
     			transition_in(map.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(slider.$$.fragment, local);
     			transition_out(title.$$.fragment, local);
-    			transition_out(content.$$.fragment, local);
+    			transition_out(content0.$$.fragment, local);
     			transition_out(timelapse.$$.fragment, local);
+    			transition_out(content1.$$.fragment, local);
     			transition_out(map.$$.fragment, local);
     			current = false;
     		},
@@ -24821,10 +24834,12 @@ var app = (function () {
     			if (detaching) detach_dev(t1);
     			destroy_component(title, detaching);
     			if (detaching) detach_dev(t2);
-    			destroy_component(content, detaching);
+    			destroy_component(content0, detaching);
     			if (detaching) detach_dev(t3);
     			destroy_component(timelapse, detaching);
     			if (detaching) detach_dev(t4);
+    			destroy_component(content1, detaching);
+    			if (detaching) detach_dev(t5);
     			destroy_component(map, detaching);
     		}
     	};

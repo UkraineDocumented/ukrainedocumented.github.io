@@ -83,7 +83,6 @@
 					.append("circle")
 					.attr("class", "timelapse-point")
 					.attr("r", 3)
-					.text("test")
 					.transition()
 					.duration(300)
 					.attr("class", "pulse")
@@ -178,7 +177,7 @@
 	.timelapse-container {
 		text-align: center;
 		width: 100vw;
-		height: 100vh;
+		height: 640px;
 		margin: auto;
 		position: sticky;
 		padding: 20px;
