@@ -97,12 +97,14 @@
 		min-width: 100vw;
 		position: absolute;
 		background-size: 100% auto !important;
+		filter: brightness(70%) contrast(120%);
 	}
 	#img-after {
 		max-width: 100vw;
 		min-width: 100vw;
 		position: absolute;
 		background-size: 100% auto !important;
+		filter: brightness(70%) contrast(120%);
 	}
 
 	#info {

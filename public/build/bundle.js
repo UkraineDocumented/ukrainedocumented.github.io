@@ -20966,20 +20966,20 @@ var app = (function () {
     			t2 = space();
     			div2 = element("div");
     			div2.textContent = "WHAT'S PICTURED?";
-    			attr_dev(div0, "class", "layer svelte-1wg55b");
+    			attr_dev(div0, "class", "layer svelte-sq3edf");
     			attr_dev(div0, "id", "img-before");
     			set_style(div0, "background-image", "url(" + /*beforeImg*/ ctx[1] + ")");
     			add_location(div0, file$7, 59, 2, 1637);
-    			attr_dev(div1, "class", "layer svelte-1wg55b");
+    			attr_dev(div1, "class", "layer svelte-sq3edf");
     			attr_dev(div1, "id", "img-after");
     			set_style(div1, "background-image", "url(" + /*afterImg*/ ctx[2] + ")");
     			add_location(div1, file$7, 64, 2, 1732);
     			attr_dev(div2, "id", "info");
-    			attr_dev(div2, "class", "svelte-1wg55b");
+    			attr_dev(div2, "class", "svelte-sq3edf");
     			add_location(div2, file$7, 70, 2, 1853);
-    			attr_dev(div3, "class", "container svelte-1wg55b");
+    			attr_dev(div3, "class", "container svelte-sq3edf");
     			add_location(div3, file$7, 58, 1, 1611);
-    			attr_dev(section, "class", "svelte-1wg55b");
+    			attr_dev(section, "class", "svelte-sq3edf");
     			add_location(section, file$7, 57, 0, 1600);
     		},
     		l: function claim(nodes) {
