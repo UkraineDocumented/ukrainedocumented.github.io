@@ -1,10 +1,12 @@
 <script>
+	export let intro;
+
 	/* import dependencies */
 	import { onMount } from "svelte";
 	import * as d3 from "d3"; // D3.js
 
 	/* import sub-components */
-	import Lede from "./Lede.svelte";
+	import Intro from "./Intro.svelte";
 
 	/* images */
 	// images must be in the "public" folder to be accessible here
@@ -35,9 +37,7 @@
 			id="img-after"
 			style="background-image: url({afterImg});"
 		/>
-		<Lede
-			content="Russia’s invasion of Ukraine has turned many areas to rubble and caused the deaths of thousands of people. TKTK user-generated content."
-		/>
+		<Intro content={intro} />
 	</div>
 </section>
 
@@ -54,7 +54,7 @@
 	.container {
 		text-align: center;
 		justify-content: center;
-		cursor: ew-resize;
+		cursor: none;
 		position: relative;
 		overflow: visible;
 		height: 100vh;

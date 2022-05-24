@@ -21,14 +21,16 @@
 		margin: 10px;
 		padding-top: 20px;
 		font-size: 30px;
-		font-weight: 700;
-		font-family: "IBM Plex Sans", sans-serif;
+		font-weight: 900;
+		font-family: "Public Sans", sans-serif;
 	}
 	p {
 		text-align: left;
 		margin: 10px;
-		font-size: 18px;
-		font-family: "DM Sans", sans-serif;
+		font-size: 1.2rem;
+		font-weight: 400;
+		line-height: 1.2rem;
+		font-family: "Public Sans", sans-serif;
 	}
 
 	.container {
