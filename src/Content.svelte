@@ -27,10 +27,15 @@
 	p {
 		text-align: left;
 		margin: 10px;
-		font-size: 1.2rem;
+		font-size: 1.25rem;
 		font-weight: 400;
-		line-height: 1.2rem;
+		line-height: 1.5rem;
 		font-family: "Public Sans", sans-serif;
+	}
+
+	a {
+		color: #7c6c83;
+		text-decoration: none;
 	}
 
 	.container {

@@ -83,6 +83,7 @@
 					.append("circle")
 					.attr("class", "timelapse-point")
 					.attr("r", 3)
+					.text("test")
 					.transition()
 					.duration(300)
 					.attr("class", "pulse")

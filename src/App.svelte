@@ -25,6 +25,8 @@
 </svelte:head>
 
 <Slider
+	beforeImg="images/before.jpg"
+	afterImg="images/after.jpg"
 	intro="<p>Russia’s attacks on civilian infrastructure in Ukraine has turned many areas to unrecognizable rubble. Ukranians have not only lost their friends and family members, but also their homes, hospitals, schools and religious buildings.</p> 
 	<p>This is the war in Ukraine, documented on social media by the people whose lives have been upturned by the attacks.</p>"
 />
@@ -35,9 +37,27 @@
 	subtitle=""
 	content="<p>More than 3,600 civilians have been killed in the 12 weeks since Russia first began its invasion of Ukraine, including more than 240 children, according to the  United Nations high commissioner for human rights. Over 1,500 civilian structures have been damaged or toppled, including hospitals, childcare centers, schools and shopping centers.</p> 
 	<p>Ukrainian residents have been documenting and recording the attacks that have obliterated parts of their country, posting videos and images on social media sites like Twitter, Telegram and YouTube.</p>
-	<p>After collecting and verifying many of the social media posts, open-source researchers at the Centre for Information Resilience found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
+	<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href='https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine'>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
 />
 
 <Timelapse />
 
 <Map />
+
+<style>
+	:global(a) {
+		color: #7c6c83;
+		text-decoration: none;
+		transition: 300;
+	}
+
+	:global(a:hover) {
+		color: white;
+		text-decoration: none;
+		background-color: #f6bd60;
+	}
+	#caption {
+		width: 600px;
+		padding-left: 1vw;
+	}
+</style>
