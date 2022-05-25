@@ -5,6 +5,8 @@
 	import Title from "./Title.svelte"; // title content component
 	import Map from "./Map.svelte"; // scrolly map component
 	import Explore from "./Explore.svelte";
+
+	import { tooltip } from "./tooltip";
 </script>
 
 <svelte:head>
@@ -32,6 +34,8 @@
 	<p>This is the war in Ukraine, documented on social media by the people whose lives have been upturned by the attacks.</p>"
 />
 
+<h1 content="test" use:tooltip>tooltip test</h1>
+
 <Title title="Ukraine, Documented" byline="Christopher Giles and Elena Shao" />
 
 <Content
@@ -54,6 +58,8 @@
 
 <style>
 	:global(body) {
+		margin: 0px;
+		padding: 0px;
 		background-color: white;
 	}
 	:global(a) {

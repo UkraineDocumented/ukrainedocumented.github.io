@@ -213,10 +213,6 @@
 </section>
 
 <style>
-	:global(body) {
-		margin: 0px;
-		padding: 0px;
-	}
 	/* TO DO: add variables for colors */
 
 	/* MAP STYLING */

@@ -33,11 +33,6 @@
 		font-family: "Public Sans", sans-serif;
 	}
 
-	a {
-		color: #7c6c83;
-		text-decoration: none;
-	}
-
 	.container {
 		text-align: center;
 		width: 650px;

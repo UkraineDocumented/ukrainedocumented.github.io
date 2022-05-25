@@ -4,6 +4,8 @@
 	import * as d3 from "d3"; // D3.js
 	import * as topojson from "topojson"; // TopoJSON
 
+	import Tooltip from "./Tooltip.svelte";
+
 	/* import data */
 	import topoData from "./assets/ukraine-regions.json";
 	import citiesData from "./assets/ukraine-cities.json";
@@ -75,6 +77,7 @@
 					{city.city.toUpperCase()}
 				</text>
 			{/each}
+
 			{#each data as d}
 				<circle
 					cx={projection([+d.long, +d.lat])[0]}
