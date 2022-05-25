@@ -4,7 +4,7 @@
 	import * as d3 from "d3"; // D3.js
 	import * as topojson from "topojson"; // TopoJSON
 
-	import Tooltip from "./Tooltip.svelte";
+	import { tooltip } from "./tooltip";
 
 	/* import data */
 	import topoData from "./assets/ukraine-regions.json";
@@ -32,6 +32,8 @@
 			topo
 		)
 	);
+
+	const parseMonthDay = d3.timeFormat("%B %e"); // i.e. returns February 14, 2022
 
 	/* onMount (Svelte Lifecycle) */
 	let cities = citiesData.filter((d) => d.show == "true"); // filtering major cities to label
@@ -85,6 +87,12 @@
 					r="5px"
 					opacity="0.65"
 					fill="#7c6c83"
+					content="<p><h4>{d.town_city}, {d.province}</h4></p>
+          <p><i>{parseMonthDay(new Date(d.date))}</i></p>
+          <br>
+          <p>{d.description}</p>
+          "
+					use:tooltip
 				/>
 			{/each}
 		</svg>
@@ -98,7 +106,7 @@
 		overflow: hidden;
 		padding-top: 20px;
 	}
-	#expore {
+	#explore {
 		width: 1260px;
 		height: 960px;
 	}
@@ -131,5 +139,12 @@
 		fill: #b29dbc;
 		font-size: 12px;
 		font-family: "IBM Plex Mono", monospace;
+	}
+	:global(h4) {
+		text-transform: uppercase;
+		font-size: 14px;
+		font-family: "IBM Plex Mono", monospace;
+		margin: 0px;
+		padding: 0px;
 	}
 </style>

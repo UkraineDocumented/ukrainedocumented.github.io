@@ -41,7 +41,11 @@
 		/>
 		<Intro content={intro} />
 
-		<span id="info" content="test" use:tooltip>WHAT'S PICTURED?</span>
+		<span
+			id="info"
+			content="<p>The satellite image on the left is taken from February 22, 2022, two days before Russia’s invasion of Ukraine. The right-side image is from May 1, 2022. Much of the steel works has been destroyed. <i>(Credit: Planet Labs PBC)</i></p> "
+			use:tooltip>HOVER: WHAT'S PICTURED?</span
+		>
 	</div>
 </section>
 

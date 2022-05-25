@@ -12,9 +12,7 @@
 	import ukraineData from "./assets/ukraine-data.json";
 
 	let svg;
-	let timelapse;
 	let label;
-	let tooltip;
 	let playButton;
 	let timer;
 	let inverted;

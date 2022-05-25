@@ -34,8 +34,6 @@
 	<p>This is the war in Ukraine, documented on social media by the people whose lives have been upturned by the attacks.</p>"
 />
 
-<h1 content="test" use:tooltip>tooltip test</h1>
-
 <Title title="Ukraine, Documented" byline="Christopher Giles and Elena Shao" />
 
 <Content
