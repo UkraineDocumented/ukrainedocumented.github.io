@@ -44,7 +44,7 @@
 <Content
 	subtitle=""
 	content="<p>Ukrainian residents have been documenting and recording the attacks that have obliterated parts of their country, posting videos and images on social media sites like Twitter, Telegram and YouTube.</p>
-	<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href='https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine'>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
+	<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href=’https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine’>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
 />
 
 <Map />
