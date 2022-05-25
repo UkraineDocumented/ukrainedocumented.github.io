@@ -24144,33 +24144,33 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
-    	child_ctx[19] = i;
+    	child_ctx[18] = list[i];
+    	child_ctx[20] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[23] = list[i];
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
-    // (130:3) {#each geo as g}
+    // (152:3) {#each geo as g}
     function create_each_block_2(ctx) {
     	let path_1;
 
     	const block = {
     		c: function create() {
     			path_1 = svg_element("path");
-    			attr_dev(path_1, "d", /*path*/ ctx[3](/*g*/ ctx[23]));
-    			attr_dev(path_1, "class", "regions svelte-vl0skl");
-    			add_location(path_1, file$1, 130, 4, 4827);
+    			attr_dev(path_1, "d", /*path*/ ctx[3](/*g*/ ctx[24]));
+    			attr_dev(path_1, "class", "regions svelte-16klg2f");
+    			add_location(path_1, file$1, 152, 4, 5501);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -24185,18 +24185,18 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(130:3) {#each geo as g}",
+    		source: "(152:3) {#each geo as g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (134:3) {#each cities as city}
+    // (156:3) {#each cities as city}
     function create_each_block_1(ctx) {
     	let rect;
     	let text_1;
-    	let t_value = /*city*/ ctx[20].city.toUpperCase() + "";
+    	let t_value = /*city*/ ctx[21].city.toUpperCase() + "";
     	let t;
 
     	const block = {
@@ -24204,19 +24204,19 @@ var app = (function () {
     			rect = svg_element("rect");
     			text_1 = svg_element("text");
     			t = text$1(t_value);
-    			attr_dev(rect, "x", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[0]);
-    			attr_dev(rect, "y", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[1]);
+    			attr_dev(rect, "x", /*projection*/ ctx[2]([+/*city*/ ctx[21].lng, +/*city*/ ctx[21].lat])[0]);
+    			attr_dev(rect, "y", /*projection*/ ctx[2]([+/*city*/ ctx[21].lng, +/*city*/ ctx[21].lat])[1]);
     			attr_dev(rect, "width", "5px");
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
-    			attr_dev(rect, "class", "cities svelte-vl0skl");
-    			add_location(rect, file$1, 135, 4, 4959);
-    			attr_dev(text_1, "x", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[0]);
-    			attr_dev(text_1, "y", /*projection*/ ctx[2]([+/*city*/ ctx[20].lng, +/*city*/ ctx[20].lat])[1]);
+    			attr_dev(rect, "class", "cities svelte-16klg2f");
+    			add_location(rect, file$1, 157, 4, 5633);
+    			attr_dev(text_1, "x", /*projection*/ ctx[2]([+/*city*/ ctx[21].lng, +/*city*/ ctx[21].lat])[0]);
+    			attr_dev(text_1, "y", /*projection*/ ctx[2]([+/*city*/ ctx[21].lng, +/*city*/ ctx[21].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
-    			attr_dev(text_1, "class", "city-label svelte-vl0skl");
-    			add_location(text_1, file$1, 144, 4, 5167);
+    			attr_dev(text_1, "class", "city-label svelte-16klg2f");
+    			add_location(text_1, file$1, 166, 4, 5841);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -24234,18 +24234,18 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(134:3) {#each cities as city}",
+    		source: "(156:3) {#each cities as city}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (160:2) {#each steps as text, i}
+    // (182:2) {#each steps as text, i}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
-    	let raw_value = /*text*/ ctx[17] + "";
+    	let raw_value = /*text*/ ctx[18] + "";
     	let t;
 
     	const block = {
@@ -24253,11 +24253,11 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "class", "step-content svelte-vl0skl");
-    			add_location(div0, file$1, 163, 4, 5655);
-    			attr_dev(div1, "class", "step svelte-vl0skl");
-    			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[19]);
-    			add_location(div1, file$1, 162, 3, 5599);
+    			attr_dev(div0, "class", "step-content svelte-16klg2f");
+    			add_location(div0, file$1, 185, 4, 6329);
+    			attr_dev(div1, "class", "step svelte-16klg2f");
+    			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[20]);
+    			add_location(div1, file$1, 184, 3, 6273);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -24267,7 +24267,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*currentStep*/ 1) {
-    				toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[19]);
+    				toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[20]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -24279,14 +24279,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(160:2) {#each steps as text, i}",
+    		source: "(182:2) {#each steps as text, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (159:1) <Scrolly bind:value={currentStep}>
+    // (181:1) <Scrolly bind:value={currentStep}>
     function create_default_slot(ctx) {
     	let each_1_anchor;
     	let each_value = /*steps*/ ctx[5];
@@ -24347,7 +24347,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(159:1) <Scrolly bind:value={currentStep}>",
+    		source: "(181:1) <Scrolly bind:value={currentStep}>",
     		ctx
     	});
 
@@ -24414,10 +24414,10 @@ var app = (function () {
     			t = space();
     			create_component(scrolly.$$.fragment);
     			attr_dev(svg_1, "id", "scrolly");
-    			add_location(svg_1, file$1, 127, 2, 4764);
-    			attr_dev(div, "class", "map-container svelte-vl0skl");
-    			add_location(div, file$1, 126, 1, 4734);
-    			add_location(section, file$1, 124, 0, 4695);
+    			add_location(svg_1, file$1, 149, 2, 5438);
+    			attr_dev(div, "class", "map-container svelte-16klg2f");
+    			add_location(div, file$1, 148, 1, 5408);
+    			add_location(section, file$1, 146, 0, 5369);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24492,7 +24492,7 @@ var app = (function () {
 
     			const scrolly_changes = {};
 
-    			if (dirty & /*$$scope, currentStep*/ 67108865) {
+    			if (dirty & /*$$scope, currentStep*/ 134217729) {
     				scrolly_changes.$$scope = { dirty, ctx };
     			}
 
@@ -24569,6 +24569,8 @@ var app = (function () {
 
     	let svg;
     	let points;
+    	let step;
+    	let stepContent1;
 
     	onMount(async () => {
     		// DOM elements are first accessible inside onMount
@@ -24581,33 +24583,31 @@ var app = (function () {
 
     	const steps = [
     		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color='colorG'><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
-    		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='https://cdn4.telegram-cdn.org/file/RdgjMQ5wy6ncOSoRzmNAtqwuS5kVrxT2ZIG63KNMy6M6UJD1ByTOh50j2iztz5JLtuG2lsIRTDsZ8Sgv2BRGw8VFOdCEL4tdsFrkqBnzW50fpoOFEu4jxnzqJOW-ofUowomB4YN_ruq_Ep0fgvIihns6-gvpBhQrz9TCzLft6dB1AL45n3MU5euXuYst5XjEBpMJ5qelpj9VWp32yrMTX4IDSSXngKFXTlaThCtuyCKyFacquODcB-tvpFzNsoxyiscX32G7wu6YJ-X9ZM-_fhgUIIWzax_0TMaViMy0AXbaWTYVrvAVGwDaJQeWWsXH8eWsuZsTsB22ad5XhScufw.jpg' width='100%'><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
-    		"teset",
-    		"<p>Education or childcare</p>"
+    		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='images/university.jpg' width='100%' alt=''/><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
+    		"<h3>Central City Hospital</h3><video src='images/central-city-hospital.mp4' alt='' width='100%'></video><p>There have also been multiple attacks on healthcare facilities. Footage from <a href=’https://twitter.com/EmineDzheppar/status/1501202129586905089’>a Twitter post on March 8, 2022</a> shows only the skeleton of a hospital in Izyum after it was hit by a Russian attack.",
+    		"<h3>Market</h3><video src='images/market.mp4' alt=''></video><p>There has also been damage to commercial centers, shopping malls and markets. <a href=’https://t.me/truexanewsua/33669’>One clip posted on March 16, 2022</a>, shows a market in the heavily attacked Kharkiv city engulfed in flames.</p>"
     	];
 
     	const step0 = function () {
     		points.style("visibility", "visible");
     		points.style("opacity", 0.65);
-    		points.filter(d => d.area_type != "Residential").attr("r", 3).attr("class", "point");
-    		points.filter(d => d.area_type === "Residential").style("fill", colorG).attr("r", 3);
+    		points.filter(d => d.area_type != "Residential").transition().duration(400).attr("r", 3).attr("class", "point");
+    		points.filter(d => d.area_type === "Residential").transition().duration(400).style("fill", colorG).attr("r", 3);
     	};
 
     	const step1 = function () {
     		points.style("visibility", "hidden");
-    		points.filter(d => d.id === "UW3612").style("fill", colorG).style("opacity", 1).style("visibility", "visible").attr("r", 5);
+    		points.filter(d => d.id === "UW3612").style("fill", colorG).transition().duration(400).style("opacity", 1).style("visibility", "visible").attr("r", 5);
     	};
 
     	const step2 = function () {
-    		
-    	}; //svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+    		points.style("visibility", "hidden");
+    		points.filter(d => d.id === "UW1895").style("fill", colorG).transition().duration(400).style("opacity", 1).style("visibility", "visible").attr("r", 5);
+    	};
 
     	const step3 = function () {
-    		
-    	}; //svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
-
-    	const step4 = function () {
-    		
+    		points.style("visibility", "hidden");
+    		points.filter(d => d.id === "UW2688").style("fill", colorG).transition().duration(400).style("opacity", 1).style("visibility", "visible").attr("r", 5);
     	};
 
     	const writable_props = [];
@@ -24647,13 +24647,14 @@ var app = (function () {
     		data,
     		svg,
     		points,
+    		step,
+    		stepContent1,
     		currentStep,
     		steps,
     		step0,
     		step1,
     		step2,
-    		step3,
-    		step4
+    		step3
     	});
 
     	$$self.$inject_state = $$props => {
@@ -24661,6 +24662,8 @@ var app = (function () {
     		if ('data' in $$props) data = $$props.data;
     		if ('svg' in $$props) svg = $$props.svg;
     		if ('points' in $$props) points = $$props.points;
+    		if ('step' in $$props) step = $$props.step;
+    		if ('stepContent1' in $$props) stepContent1 = $$props.stepContent1;
     		if ('currentStep' in $$props) $$invalidate(0, currentStep = $$props.currentStep);
     	};
 
@@ -24677,7 +24680,11 @@ var app = (function () {
     				step0();
     			} else if (currentStep == 1) {
     				step1();
-    			} else ;
+    			} else if (currentStep == 2) {
+    				step2();
+    			} else if (currentStep == 3) {
+    				step3();
+    			}
     		}
     	};
 

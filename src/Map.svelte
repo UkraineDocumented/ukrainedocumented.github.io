@@ -51,6 +51,8 @@
 
 	let svg;
 	let points;
+	let step;
+	let stepContent1;
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
@@ -66,9 +68,9 @@
 	let currentStep;
 	const steps = [
 		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color='colorG'><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
-		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='https://cdn4.telegram-cdn.org/file/RdgjMQ5wy6ncOSoRzmNAtqwuS5kVrxT2ZIG63KNMy6M6UJD1ByTOh50j2iztz5JLtuG2lsIRTDsZ8Sgv2BRGw8VFOdCEL4tdsFrkqBnzW50fpoOFEu4jxnzqJOW-ofUowomB4YN_ruq_Ep0fgvIihns6-gvpBhQrz9TCzLft6dB1AL45n3MU5euXuYst5XjEBpMJ5qelpj9VWp32yrMTX4IDSSXngKFXTlaThCtuyCKyFacquODcB-tvpFzNsoxyiscX32G7wu6YJ-X9ZM-_fhgUIIWzax_0TMaViMy0AXbaWTYVrvAVGwDaJQeWWsXH8eWsuZsTsB22ad5XhScufw.jpg' width='100%'><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
-		"teset",
-		"<p>Education or childcare</p>",
+		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='images/university.jpg' width='100%' alt=''/><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
+		"<h3>Central City Hospital</h3><video src='images/central-city-hospital.mp4' alt='' width='100%'></video><p>There have also been multiple attacks on healthcare facilities. Footage from <a href=’https://twitter.com/EmineDzheppar/status/1501202129586905089’>a Twitter post on March 8, 2022</a> shows only the skeleton of a hospital in Izyum after it was hit by a Russian attack.",
+		"<h3>Market</h3><video src='images/market.mp4' alt=''></video><p>There has also been damage to commercial centers, shopping malls and markets. <a href=’https://t.me/truexanewsua/33669’>One clip posted on March 16, 2022</a>, shows a market in the heavily attacked Kharkiv city engulfed in flames.</p>",
 	];
 
 	const step0 = function () {
@@ -76,10 +78,14 @@
 		points.style("opacity", 0.65);
 		points
 			.filter((d) => d.area_type != "Residential")
+			.transition()
+			.duration(400)
 			.attr("r", 3)
 			.attr("class", "point");
 		points
 			.filter((d) => d.area_type === "Residential")
+			.transition()
+			.duration(400)
 			.style("fill", colorG)
 			.attr("r", 3);
 	};
@@ -89,20 +95,36 @@
 		points
 			.filter((d) => d.id === "UW3612")
 			.style("fill", colorG)
+			.transition()
+			.duration(400)
 			.style("opacity", 1)
 			.style("visibility", "visible")
 			.attr("r", 5);
 	};
 
 	const step2 = function () {
-		//svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		points.style("visibility", "hidden");
+		points
+			.filter((d) => d.id === "UW1895")
+			.style("fill", colorG)
+			.transition()
+			.duration(400)
+			.style("opacity", 1)
+			.style("visibility", "visible")
+			.attr("r", 5);
 	};
 
 	const step3 = function () {
-		//svg.selectAll(".point").style("fill", colorD).attr("r", 3); // default styles
+		points.style("visibility", "hidden");
+		points
+			.filter((d) => d.id === "UW2688")
+			.style("fill", colorG)
+			.transition()
+			.duration(400)
+			.style("opacity", 1)
+			.style("visibility", "visible")
+			.attr("r", 5);
 	};
-
-	const step4 = function () {};
 
 	/* run code reactively based on scroll position */
 
@@ -180,6 +202,7 @@
 	/* TO DO: add global styles for containers */
 	.map-container {
 		text-align: center;
+		justify-content: center;
 		width: 100vw;
 		height: 100vh;
 		top: 15%;
@@ -225,7 +248,7 @@
 
 	/* the container for each step */
 	.step {
-		height: 100vh;
+		height: 120vh;
 		display: flex;
 		place-items: center;
 		justify-content: center;
@@ -233,9 +256,9 @@
 
 	/* the content for each step */
 	.step-content {
-		width: 500px;
-		background-color: #efeff0;
-		color: #ccc;
+		width: 350px;
+		background-color: white;
+		color: black;
 		font-family: "Public Sans", sans-serif;
 		font-size: 1rem;
 		line-height: 1.25rem;
@@ -247,22 +270,11 @@
 		transition: background 500ms ease;
 		box-shadow: 1px 1px 5px #adb5bd;
 		z-index: 10;
+		opacity: 0.85;
 	}
 
 	/* this makes the element stand out if it is active */
 	.step.active .step-content {
-		background: white;
-		color: black;
-	}
-
-	.panel {
-		position: absolute;
-		padding: 10px;
-		border-radius: 3px;
-		width: 200px;
-		background-color: #f8f9fa;
-		box-shadow: 0px 0px 5px #adb5bd;
-		pointer-events: none;
-		stroke: black;
+		opacity: 1;
 	}
 </style>
