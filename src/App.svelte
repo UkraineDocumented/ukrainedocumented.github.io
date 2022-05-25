@@ -4,6 +4,7 @@
 	import Content from "./Content.svelte"; // reusable text content component
 	import Title from "./Title.svelte"; // title content component
 	import Map from "./Map.svelte"; // scrolly map component
+	import Explore from "./Explore.svelte";
 </script>
 
 <svelte:head>
@@ -49,7 +50,12 @@
 
 <Map />
 
+<Explore />
+
 <style>
+	:global(body) {
+		background-color: white;
+	}
 	:global(a) {
 		color: #7c6c83;
 		text-decoration: none;

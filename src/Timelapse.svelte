@@ -1,6 +1,5 @@
 <script>
 	import Button from "./Button.svelte"; // reusable button component
-	import Panel from "./Panel.svelte"; // reusable panel component
 
 	/* import dependencies */
 	import { onMount } from "svelte";

@@ -52,7 +52,6 @@
 	let svg;
 	let points;
 	let step;
-	let stepContent1;
 
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
@@ -63,6 +62,8 @@
 			.join("circle")
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
 			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
+
+		step = d3.selectAll(".step");
 	});
 
 	let currentStep;
@@ -71,10 +72,13 @@
 		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='images/university.jpg' width='100%' alt=''/><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href=’https://t.me/truexanewsua/36269’>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
 		"<h3>Central City Hospital</h3><video src='images/central-city-hospital.mp4' alt='' width='100%'></video><p>There have also been multiple attacks on healthcare facilities. Footage from <a href=’https://twitter.com/EmineDzheppar/status/1501202129586905089’>a Twitter post on March 8, 2022</a> shows only the skeleton of a hospital in Izyum after it was hit by a Russian attack.",
 		"<h3>Market</h3><video src='images/market.mp4' alt=''></video><p>There has also been damage to commercial centers, shopping malls and markets. <a href=’https://t.me/truexanewsua/33669’>One clip posted on March 16, 2022</a>, shows a market in the heavily attacked Kharkiv city engulfed in flames.</p>",
+		"<p>Explore the data.</p>",
+		"",
 	];
 
 	const step0 = function () {
 		points.style("visibility", "visible");
+		step.style("visibility", "visible");
 		points.style("opacity", 0.65);
 		points
 			.filter((d) => d.area_type != "Residential")
@@ -92,6 +96,7 @@
 
 	const step1 = function () {
 		points.style("visibility", "hidden");
+		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW3612")
 			.style("fill", colorG)
@@ -104,6 +109,7 @@
 
 	const step2 = function () {
 		points.style("visibility", "hidden");
+		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW1895")
 			.style("fill", colorG)
@@ -116,6 +122,7 @@
 
 	const step3 = function () {
 		points.style("visibility", "hidden");
+		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW2688")
 			.style("fill", colorG)
@@ -124,6 +131,16 @@
 			.style("opacity", 1)
 			.style("visibility", "visible")
 			.attr("r", 5);
+	};
+
+	const step4 = function () {
+		points.style("visibility", "visible").style("fill", colorD);
+		step.style("visibility", "visible");
+	};
+
+	const step5 = function () {
+		points.style("visibility", "visible");
+		step.style("visibility", "hidden");
 	};
 
 	/* run code reactively based on scroll position */
@@ -138,6 +155,10 @@
 		step2();
 	} else if (currentStep == 3) {
 		step3();
+	} else if (currentStep == 4) {
+		step4();
+	} else if (currentStep == 5) {
+		step5();
 	}
 </script>
 
