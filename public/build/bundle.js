@@ -23281,17 +23281,17 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[22] = list[i];
+    	child_ctx[28] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[25] = list[i];
+    	child_ctx[31] = list[i];
     	return child_ctx;
     }
 
-    // (134:1) <Button type="play-button">
+    // (170:1) <Button type="play-button">
     function create_default_slot$1(ctx) {
     	let t;
 
@@ -23311,23 +23311,23 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(134:1) <Button type=\\\"play-button\\\">",
+    		source: "(170:1) <Button type=\\\"play-button\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:3) {#each geo as g}
+    // (174:3) {#each geo as g}
     function create_each_block_1$2(ctx) {
     	let path_1;
 
     	const block = {
     		c: function create() {
     			path_1 = svg_element("path");
-    			attr_dev(path_1, "d", /*path*/ ctx[2](/*g*/ ctx[25]));
-    			attr_dev(path_1, "class", "regions svelte-1ct7bcm");
-    			add_location(path_1, file$6, 138, 4, 3959);
+    			attr_dev(path_1, "d", /*path*/ ctx[2](/*g*/ ctx[31]));
+    			attr_dev(path_1, "class", "regions svelte-10dgp7p");
+    			add_location(path_1, file$6, 174, 4, 4754);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -23342,18 +23342,18 @@ var app = (function () {
     		block,
     		id: create_each_block_1$2.name,
     		type: "each",
-    		source: "(138:3) {#each geo as g}",
+    		source: "(174:3) {#each geo as g}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:3) {#each cities as city}
+    // (178:3) {#each cities as city}
     function create_each_block$2(ctx) {
     	let rect;
     	let text_1;
-    	let t_value = /*city*/ ctx[22].city.toUpperCase() + "";
+    	let t_value = /*city*/ ctx[28].city.toUpperCase() + "";
     	let t;
 
     	const block = {
@@ -23361,19 +23361,19 @@ var app = (function () {
     			rect = svg_element("rect");
     			text_1 = svg_element("text");
     			t = text$1(t_value);
-    			attr_dev(rect, "x", /*projection*/ ctx[1]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[0]);
-    			attr_dev(rect, "y", /*projection*/ ctx[1]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[1]);
+    			attr_dev(rect, "x", /*projection*/ ctx[1]([+/*city*/ ctx[28].lng, +/*city*/ ctx[28].lat])[0]);
+    			attr_dev(rect, "y", /*projection*/ ctx[1]([+/*city*/ ctx[28].lng, +/*city*/ ctx[28].lat])[1]);
     			attr_dev(rect, "width", "5px");
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
-    			attr_dev(rect, "class", "cities svelte-1ct7bcm");
-    			add_location(rect, file$6, 143, 4, 4091);
-    			attr_dev(text_1, "x", /*projection*/ ctx[1]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[0]);
-    			attr_dev(text_1, "y", /*projection*/ ctx[1]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[1]);
+    			attr_dev(rect, "class", "cities svelte-10dgp7p");
+    			add_location(rect, file$6, 179, 4, 4886);
+    			attr_dev(text_1, "x", /*projection*/ ctx[1]([+/*city*/ ctx[28].lng, +/*city*/ ctx[28].lat])[0]);
+    			attr_dev(text_1, "y", /*projection*/ ctx[1]([+/*city*/ ctx[28].lng, +/*city*/ ctx[28].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
-    			attr_dev(text_1, "class", "city-label svelte-1ct7bcm");
-    			add_location(text_1, file$6, 152, 4, 4299);
+    			attr_dev(text_1, "class", "city-label svelte-10dgp7p");
+    			add_location(text_1, file$6, 188, 4, 5094);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -23391,7 +23391,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(142:3) {#each cities as city}",
+    		source: "(178:3) {#each cities as city}",
     		ctx
     	});
 
@@ -23450,11 +23450,11 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(svg_1, file$6, 135, 2, 3909);
-    			attr_dev(div, "class", "timelapse-container svelte-1ct7bcm");
-    			add_location(div, file$6, 134, 1, 3873);
-    			attr_dev(section, "class", "svelte-1ct7bcm");
-    			add_location(section, file$6, 132, 0, 3820);
+    			add_location(svg_1, file$6, 171, 2, 4704);
+    			attr_dev(div, "class", "timelapse-container svelte-10dgp7p");
+    			add_location(div, file$6, 170, 1, 4668);
+    			attr_dev(section, "class", "svelte-10dgp7p");
+    			add_location(section, file$6, 168, 0, 4615);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23478,16 +23478,16 @@ var app = (function () {
 
     			current = true;
     		},
-    		p: function update(ctx, [dirty]) {
+    		p: function update(ctx, dirty) {
     			const button_changes = {};
 
-    			if (dirty & /*$$scope*/ 268435456) {
+    			if (dirty[1] & /*$$scope*/ 8) {
     				button_changes.$$scope = { dirty, ctx };
     			}
 
     			button.$set(button_changes);
 
-    			if (dirty & /*path, geo*/ 5) {
+    			if (dirty[0] & /*path, geo*/ 5) {
     				each_value_1 = /*geo*/ ctx[0];
     				validate_each_argument(each_value_1);
     				let i;
@@ -23511,7 +23511,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*projection, cities*/ 10) {
+    			if (dirty[0] & /*projection, cities*/ 10) {
     				each_value = /*cities*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
@@ -23563,9 +23563,6 @@ var app = (function () {
     	return block;
     }
 
-    const w$1 = 840;
-    const h$1 = 640;
-
     function instance$6($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Timelapse', slots, []);
@@ -23575,6 +23572,14 @@ var app = (function () {
     	let timer;
     	let inverted;
     	let pointer = 1;
+
+    	/***********/
+    	/*** MAP ***/
+    	/***********/
+    	/* main map container */
+    	const w = 840 * 1.35;
+
+    	const h = 640 * 1.35;
     	const m = { top: 20, right: 20, bottom: 20, left: 20 };
 
     	/* map definitions */
@@ -23585,7 +23590,7 @@ var app = (function () {
 
     	const path = index$2().projection(// a projection’s .fitExtent() method sets the projection’s
     	// to fit within a given bounding box
-    	projection.fitExtent([[m.top, m.left], [w$1 - m.bottom, h$1 - m.right]], topo));
+    	projection.fitExtent([[m.top, m.left], [w - m.bottom, h - m.right]], topo));
 
     	/* onMount (Svelte Lifecycle) */
     	let cities = citiesData.filter(d => d.show == "true"); // filtering major cities to label
@@ -23607,12 +23612,31 @@ var app = (function () {
     	const parseMonthDay = timeFormat("%B %e"); // i.e.
     	const parseDayOfWeek = timeFormat("%A"); // i.e. returns
     	const xScale = time().domain([start, end]).range([1, numDays]).clamp(true); // allows the domain value to always be in range
+    	let timelapse;
+    	let tooltip;
+    	let mouseover;
+    	let mouseout;
 
     	function update(data, inverted) {
+    		mouseover = function (event, d) {
+    			//console.log(event);
+    			select(".tooltip").html(`<p>
+				<b>${d.town_city}, ${d.province}</b> on ${d.date}:
+			 	<br>
+			 	${d.description}
+			 	</p>`).style("left", event.pageX - 20 + "px").style("top", event.pageY + 20 + "px").transition().duration(200).style("opacity", 1);
+
+    			select(".tooltip").classed("hidden", false);
+    		};
+
+    		mouseout = function (event, d) {
+    			select(".tooltip").transition().duration(200).style("opacity", 0);
+    		};
+
     		// filter and plot points in a timelapse fashion
     		let filtered = data.filter(d => d.date <= formatTime(inverted));
 
-    		timelapse = svg.selectAll(".timelapse-point").data(filtered).join(enter => enter.append("circle").attr("class", "timelapse-point").attr("r", 3).transition().duration(300).attr("class", "pulse").transition().duration(300).attr("class", "timelapse-point")).attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]); // TO DO: make sure looping correctly
+    		timelapse = svg.selectAll(".timelapse-point").data(filtered).join(enter => enter.append("circle").attr("class", "timelapse-point").attr("r", 4).transition().duration(300).attr("class", "pulse").transition().duration(300).attr("class", "timelapse-point")).attr("cx", d => projection([+d.long, +d.lat])[0]).attr("cy", d => projection([+d.long, +d.lat])[1]).on("mousemove", mousemove).on("mouseout", mouseout); // TO DO: make sure looping correctly
 
     		//let monthDay = parseMonthDay(inverted);
     		//let dayOfWeek = parseDayOfWeek(inverted);
@@ -23620,11 +23644,13 @@ var app = (function () {
     	}
 
     	onMount(async () => {
+    		tooltip = select("timelapse-container").append("div").attr("class", "tooltip").classed("hidden", true);
+
     		// DOM elements are first accessible inside onMount
-    		svg = select("svg").attr("width", w$1).attr("height", h$1);
+    		svg = select("svg").attr("width", w).attr("height", h);
 
     		playButton = select(".play-button");
-    		label = svg.append("text").text(parseTime(start)).attr("id", "label").attr("x", m.left).attr("y", h$1 - 3 * m.bottom);
+    		label = svg.append("text").text(parseTime(start)).attr("id", "label").attr("x", m.left).attr("y", h - 3 * m.bottom);
 
     		playButton.on("click", function () {
     			const button = select(this);
@@ -23674,8 +23700,8 @@ var app = (function () {
     		timer,
     		inverted,
     		pointer,
-    		w: w$1,
-    		h: h$1,
+    		w,
+    		h,
     		m,
     		topo,
     		geo,
@@ -23691,6 +23717,10 @@ var app = (function () {
     		parseMonthDay,
     		parseDayOfWeek,
     		xScale,
+    		timelapse,
+    		tooltip,
+    		mouseover,
+    		mouseout,
     		update
     	});
 
@@ -23703,6 +23733,10 @@ var app = (function () {
     		if ('pointer' in $$props) pointer = $$props.pointer;
     		if ('cities' in $$props) $$invalidate(3, cities = $$props.cities);
     		if ('data' in $$props) data = $$props.data;
+    		if ('timelapse' in $$props) timelapse = $$props.timelapse;
+    		if ('tooltip' in $$props) tooltip = $$props.tooltip;
+    		if ('mouseover' in $$props) mouseover = $$props.mouseover;
+    		if ('mouseout' in $$props) mouseout = $$props.mouseout;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -23715,7 +23749,7 @@ var app = (function () {
     class Timelapse extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init$1(this, options, instance$6, create_fragment$6, safe_not_equal, {});
+    		init$1(this, options, instance$6, create_fragment$6, safe_not_equal, {}, null, [-1, -1]);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -24283,7 +24317,7 @@ var app = (function () {
     		c: function create() {
     			path_1 = svg_element("path");
     			attr_dev(path_1, "d", /*path*/ ctx[3](/*g*/ ctx[25]));
-    			attr_dev(path_1, "class", "regions svelte-jihx93");
+    			attr_dev(path_1, "class", "regions svelte-1ohiupw");
     			add_location(path_1, file$2, 173, 4, 6042);
     		},
     		m: function mount(target, anchor) {
@@ -24323,13 +24357,13 @@ var app = (function () {
     			attr_dev(rect, "width", "5px");
     			attr_dev(rect, "height", "5px");
     			attr_dev(rect, "fill", "steelblue");
-    			attr_dev(rect, "class", "cities svelte-jihx93");
+    			attr_dev(rect, "class", "cities svelte-1ohiupw");
     			add_location(rect, file$2, 178, 4, 6174);
     			attr_dev(text_1, "x", /*projection*/ ctx[2]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[0]);
     			attr_dev(text_1, "y", /*projection*/ ctx[2]([+/*city*/ ctx[22].lng, +/*city*/ ctx[22].lat])[1]);
     			attr_dev(text_1, "dx", "10");
     			attr_dev(text_1, "dy", "7");
-    			attr_dev(text_1, "class", "city-label svelte-jihx93");
+    			attr_dev(text_1, "class", "city-label svelte-1ohiupw");
     			add_location(text_1, file$2, 187, 4, 6382);
     		},
     		m: function mount(target, anchor) {
@@ -24367,9 +24401,9 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "class", "step-content svelte-jihx93");
+    			attr_dev(div0, "class", "step-content svelte-1ohiupw");
     			add_location(div0, file$2, 206, 4, 6870);
-    			attr_dev(div1, "class", "step svelte-jihx93");
+    			attr_dev(div1, "class", "step svelte-1ohiupw");
     			toggle_class(div1, "active", /*currentStep*/ ctx[0] === /*i*/ ctx[21]);
     			add_location(div1, file$2, 205, 3, 6814);
     		},
@@ -24529,7 +24563,7 @@ var app = (function () {
     			create_component(scrolly.$$.fragment);
     			attr_dev(svg_1, "id", "scrolly");
     			add_location(svg_1, file$2, 170, 2, 5979);
-    			attr_dev(div, "class", "map-container svelte-jihx93");
+    			attr_dev(div, "class", "map-container svelte-1ohiupw");
     			add_location(div, file$2, 169, 1, 5949);
     			add_location(section, file$2, 167, 0, 5910);
     		},
@@ -25271,8 +25305,6 @@ var app = (function () {
     	let content1;
     	let t5;
     	let map;
-    	let t6;
-    	let explore;
     	let current;
 
     	slider = new Slider({
@@ -25311,7 +25343,6 @@ var app = (function () {
     		});
 
     	map = new Map$1({ $$inline: true });
-    	explore = new Explore({ $$inline: true });
 
     	const block = {
     		c: function create() {
@@ -25330,8 +25361,6 @@ var app = (function () {
     			create_component(content1.$$.fragment);
     			t5 = space();
     			create_component(map.$$.fragment);
-    			t6 = space();
-    			create_component(explore.$$.fragment);
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
     			add_location(link0, file, 21, 1, 711);
@@ -25362,8 +25391,6 @@ var app = (function () {
     			mount_component(content1, target, anchor);
     			insert_dev(target, t5, anchor);
     			mount_component(map, target, anchor);
-    			insert_dev(target, t6, anchor);
-    			mount_component(explore, target, anchor);
     			current = true;
     		},
     		p: noop$4,
@@ -25375,7 +25402,6 @@ var app = (function () {
     			transition_in(timelapse.$$.fragment, local);
     			transition_in(content1.$$.fragment, local);
     			transition_in(map.$$.fragment, local);
-    			transition_in(explore.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -25385,7 +25411,6 @@ var app = (function () {
     			transition_out(timelapse.$$.fragment, local);
     			transition_out(content1.$$.fragment, local);
     			transition_out(map.$$.fragment, local);
-    			transition_out(explore.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -25404,8 +25429,6 @@ var app = (function () {
     			destroy_component(content1, detaching);
     			if (detaching) detach_dev(t5);
     			destroy_component(map, detaching);
-    			if (detaching) detach_dev(t6);
-    			destroy_component(explore, detaching);
     		}
     	};
 

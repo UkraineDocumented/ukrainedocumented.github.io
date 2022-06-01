@@ -52,7 +52,40 @@
 
 <Map />
 
-<Explore />
+<Content
+	><span slot="content">
+		<p>
+			The Azovstal Iron and Steel Works, a huge metallurgical plant on the
+			outskirts of Mariupol in Eastern Ukraine, has been largely left in ruins.
+		</p>
+		<p>
+			The facilities were heavily attacked by the Russian military for weeks and
+			were targeted by missiles and shelling. In March, Ukrainian MP Serhiy
+			Taruta said that Russian forces had "practically destroyed the factory".
+		</p>
+		<p>
+			Underneath the plant is a network of tunnels and bunkers where Ukrainian
+			forces stayed and refused to surrender. The works were one of the last
+			centers of Ukrainian resistance in Mariupol and the facility has its own
+			access to the port. It is one of the largest facilities of its kind in
+			Ukraine.
+		</p>
+		<p>
+			And in late May, it was reported that surrendered Ukrainian fighters left
+			the factory.
+		</p>
+		<p>
+			In the nearby streets of Mariupol, debris scattered the roads and trees
+			were fallen. There’s a cavernous hole stands in a large building that is
+			part of one of the oldest universities in the area.
+		</p>
+		<p>
+			Footage shows Pryazovskyi State Technical University, which trains
+			thousands of students in technical skills to work in the nearby
+			steelworks, heavily damaged.
+		</p>
+	</span>
+</Content>
 
 <style>
 	:global(body) {

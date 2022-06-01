@@ -1,12 +1,11 @@
 <script>
 	export let subtitle;
-	export let content;
 </script>
 
 <section>
 	<div class="container">
 		<h2>{subtitle}</h2>
-		<p>{@html content}</p>
+		<p><slot name="content" /></p>
 	</div>
 </section>
 

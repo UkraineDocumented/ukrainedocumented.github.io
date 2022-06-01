@@ -23,8 +23,8 @@
 	/***********/
 
 	/* main map container */
-	const w = 840;
-	const h = 640;
+	const w = 840 * 1.35;
+	const h = 640 * 1.35;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
 
 	/* map definitions */
@@ -69,7 +69,35 @@
 		.range([1, numDays])
 		.clamp(true); // allows the domain value to always be in range
 
+	let timelapse;
+	let tooltip;
+	let mouseover;
+	let mouseout;
+
 	function update(data, inverted) {
+		mouseover = function (event, d) {
+			//console.log(event);
+			d3.select(".tooltip")
+				.html(
+					`<p>
+				<b>${d.town_city}, ${d.province}</b> on ${d.date}:
+			 	<br>
+			 	${d.description}
+			 	</p>`
+				)
+				.style("left", event.pageX - 20 + "px")
+				.style("top", event.pageY + 20 + "px")
+				.transition()
+				.duration(200)
+				.style("opacity", 1);
+
+			d3.select(".tooltip").classed("hidden", false);
+		};
+
+		mouseout = function (event, d) {
+			d3.select(".tooltip").transition().duration(200).style("opacity", 0);
+		};
+
 		// filter and plot points in a timelapse fashion
 		let filtered = data.filter((d) => d.date <= formatTime(inverted));
 		timelapse = svg
@@ -79,7 +107,7 @@
 				enter
 					.append("circle")
 					.attr("class", "timelapse-point")
-					.attr("r", 3)
+					.attr("r", 4)
 					.transition()
 					.duration(300)
 					.attr("class", "pulse")
@@ -88,7 +116,9 @@
 					.attr("class", "timelapse-point")
 			)
 			.attr("cx", (d) => projection([+d.long, +d.lat])[0]) // TO DO: make sure looping correctly
-			.attr("cy", (d) => projection([+d.long, +d.lat])[1]);
+			.attr("cy", (d) => projection([+d.long, +d.lat])[1])
+			.on("mousemove", mousemove)
+			.on("mouseout", mouseout);
 
 		//let monthDay = parseMonthDay(inverted);
 		//let dayOfWeek = parseDayOfWeek(inverted);
@@ -97,6 +127,12 @@
 	}
 
 	onMount(async () => {
+		tooltip = d3
+			.select("timelapse-container")
+			.append("div")
+			.attr("class", "tooltip")
+			.classed("hidden", true);
+
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("svg").attr("width", w).attr("height", h);
 		playButton = d3.select(".play-button");
@@ -174,7 +210,7 @@
 	.timelapse-container {
 		text-align: center;
 		width: 100vw;
-		height: 640px;
+		height: 100vh;
 		margin: auto;
 		position: sticky;
 		padding: 20px;
@@ -211,5 +247,25 @@
 		font-size: 16px;
 		font-family: "IBM Plex Mono", monospace;
 		text-decoration: none;
+	}
+
+	:global(.tooltip) {
+		position: absolute;
+		padding: 10px;
+		border-radius: 3px;
+		width: 300px;
+		background-color: #f8f9fa;
+		box-shadow: 1px 1px 5px #adb5bd;
+		pointer-events: none;
+		stroke: black;
+	}
+	:global(.tooltip .hidden) {
+		display: none;
+	}
+
+	:global(.tooltip p) {
+		font-family: "IBM Plex Mono", monospace;
+		margin: 0;
+		font-size: 12px;
 	}
 </style>

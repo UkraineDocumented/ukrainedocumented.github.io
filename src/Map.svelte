@@ -254,12 +254,6 @@
 		opacity: 0.65;
 	}
 
-	:global(.point:hover) {
-		position: absolute;
-		fill: #f6bd60;
-		opacity: 1;
-	}
-
 	:global(.pulse) {
 		fill: #e76f51;
 		opacity: 0.35;
