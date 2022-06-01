@@ -1,10 +1,8 @@
 <script>
-	export let subtitle;
 </script>
 
 <section>
 	<div class="container">
-		<h2>{subtitle}</h2>
 		<p><slot name="content" /></p>
 	</div>
 </section>
@@ -15,14 +13,7 @@
 		width: 100vw;
 		overflow: hidden;
 	}
-	h2 {
-		text-align: center;
-		margin: 10px;
-		padding-top: 20px;
-		font-size: 30px;
-		font-weight: 900;
-		font-family: "Public Sans", sans-serif;
-	}
+
 	p {
 		text-align: left;
 		margin: 10px;
@@ -37,5 +28,6 @@
 		width: 650px;
 		margin: auto;
 		position: sticky;
+		padding-bottom: 10vh;
 	}
 </style>

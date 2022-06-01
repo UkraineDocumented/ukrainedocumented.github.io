@@ -22,8 +22,8 @@
 	const colorG = "#e76f51"; // orange : highlight color
 
 	/* main map container */
-	const w = 840;
-	const h = 640;
+	const w = 840 * 1.25;
+	const h = 640 * 1.25;
 	const m = { top: 20, right: 20, bottom: 20, left: 20 };
 
 	/* map definitions */

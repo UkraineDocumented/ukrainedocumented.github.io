@@ -4,7 +4,7 @@
 	import Content from "./Content.svelte"; // reusable text content component
 	import Title from "./Title.svelte"; // title content component
 	import Map from "./Map.svelte"; // scrolly map component
-	import Explore from "./Explore.svelte";
+	import Image from "./Image.svelte";
 
 	import { tooltip } from "./tooltip";
 </script>
@@ -37,18 +37,46 @@
 <Title title="Ukraine, Documented" byline="Christopher Giles and Elena Shao" />
 
 <Content
-	subtitle=""
-	content="<p>More than 3,600 civilians have been killed in the 12 weeks since Russia first began its invasion of Ukraine, including more than 240 children, according to the  United Nations high commissioner for human rights.</p>
-	<p>Over 1,500 civilian structures have been damaged or toppled, including hospitals, childcare centers, schools and shopping centers.</p> "
-/>
+	><span slot="content"
+		><p>
+			More than 3,600 civilians have been killed in the 12 weeks since Russia
+			first began its invasion of Ukraine, including more than 240 children,
+			according to the United Nations high commissioner for human rights.
+		</p>
+		<p>
+			Over 1,500 civilian structures have been damaged or toppled, including
+			hospitals, childcare centers, schools and shopping centers.
+		</p>
+		<p>
+			Each entry from the data used in the map below is an “event” — a verified
+			video clip or image from a social media post that shows damage to civilian
+			infrastructure. The destruction can vary from destruction to one part of a
+			structure or destruction to multiple locations in one area.
+		</p></span
+	>
+</Content>
 
 <Timelapse />
 
 <Content
-	subtitle=""
-	content="<p>Ukrainian residents have been documenting and recording the attacks that have obliterated parts of their country, posting videos and images on social media sites like Twitter, Telegram and YouTube.</p>
-	<p>After collecting and verifying many of the social media posts, open-source researchers at the <a href=’https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine’>Centre for Information Resilience</a> found that destruction of civilian infrastructure was the most frequently recorded incident. Civilian targeted attacks account for over a third of over 3,000 conflict-related events documented in Ukraine and Russia’s borderland regions, so far.</p>"
-/>
+	><span slot="content"
+		><p>
+			Ukrainian residents have been documenting and recording the attacks that
+			have obliterated parts of their country, posting videos and images on
+			social media sites like Twitter, Telegram and YouTube.
+		</p>
+		<p>
+			After collecting and verifying many of the social media posts, open-source
+			researchers at the <a
+				href="’https://www.info-res.org/post/eyes-on-russia-documenting-conflict-and-disinformation-in-the-kremlin-s-war-on-ukraine’"
+				>Centre for Information Resilience</a
+			> found that destruction of civilian infrastructure was the most frequently
+			recorded incident. Civilian targeted attacks account for over a third of over
+			3,000 conflict-related events documented in Ukraine and Russia’s borderland
+			regions, so far.
+		</p></span
+	></Content
+>
 
 <Map />
 
@@ -63,7 +91,14 @@
 			were targeted by missiles and shelling. In March, Ukrainian MP Serhiy
 			Taruta said that Russian forces had "practically destroyed the factory".
 		</p>
-		<p>
+	</span>
+</Content>
+
+<Image src="images/ukraine-geo.png" alt="" />
+
+<Content
+	><span slot="content"
+		><p>
 			Underneath the plant is a network of tunnels and bunkers where Ukrainian
 			forces stayed and refused to surrender. The works were one of the last
 			centers of Ukrainian resistance in Mariupol and the facility has its own
@@ -83,9 +118,9 @@
 			Footage shows Pryazovskyi State Technical University, which trains
 			thousands of students in technical skills to work in the nearby
 			steelworks, heavily damaged.
-		</p>
-	</span>
-</Content>
+		</p></span
+	></Content
+>
 
 <style>
 	:global(body) {
