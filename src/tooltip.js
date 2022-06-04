@@ -1,11 +1,10 @@
-import Tooltip from "./Tooltip.svelte";
+import Tooltip from "./Tooltip.svelte"; // reusable tooltip component
 
 export function tooltip(element) {
 	let content;
 	let tooltipComponent;
+
 	function mouseOver(event) {
-		// NOTE: remove the `content` attribute, to prevent showing the default browser tooltip
-		// remember to set it back on `mouseleave`
 		content = element.getAttribute("content");
 		element.removeAttribute("content");
 
@@ -18,15 +17,16 @@ export function tooltip(element) {
 			target: document.body,
 		});
 	}
+
 	function mouseMove(event) {
 		tooltipComponent.$set({
 			x: event.pageX,
 			y: event.pageY,
 		});
 	}
+
 	function mouseLeave() {
 		tooltipComponent.$destroy();
-		// NOTE: restore the `content` attribute
 		element.setAttribute("content", content);
 	}
 

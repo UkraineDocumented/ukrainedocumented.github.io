@@ -12,15 +12,6 @@
 	import citiesData from "./assets/ukraine-cities.json";
 	import ukraineData from "./assets/ukraine-data.json";
 
-	/* colors */
-	const colorA = "#efeff0"; // whitish : background color
-	const colorB = "#d5cad6"; // grayish : region border color
-	const colorC = "#b29dbc"; // muted purple : label and point color
-	const colorD = "#7c6c83"; // dark purple : heading color
-	const colorE = "#adb5bd"; // light gray : box shadow color
-	const colorF = "#f6bd60"; // yellow : hover color
-	const colorG = "#e76f51"; // orange : highlight color
-
 	/* main map container */
 	const w = 840 * 1.25;
 	const h = 640 * 1.25;
@@ -68,12 +59,10 @@
 
 	let currentStep;
 	const steps = [
-		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color='colorG'><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
-		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='images/university.jpg' width='100%' alt=''/><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href=’https://t.me/truexanewsua/36269’>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
-		"<h3>Central City Hospital</h3><video src='images/central-city-hospital.mp4' alt='' width='100%'></video><p>There have also been multiple attacks on healthcare facilities. Footage from <a href=’https://twitter.com/EmineDzheppar/status/1501202129586905089’>a Twitter post on March 8, 2022</a> shows only the skeleton of a hospital in Izyum after it was hit by a Russian attack.",
-		"<h3>Market</h3><video src='images/market.mp4' alt=''></video><p>There has also been damage to commercial centers, shopping malls and markets. <a href=’https://t.me/truexanewsua/33669’>One clip posted on March 16, 2022</a>, shows a market in the heavily attacked Kharkiv city engulfed in flames.</p>",
-		"<p>Explore the data.</p>",
-		"",
+		"<p>These dots represents instances where an attack on civilian infrastructure was documented on social media and verified by the Center for Information Resilience's Eyes on Russia project. <font color=#e76f51><b>Residential areas</b></font> were mostly frequently hit, followed by commercial buildings and infrastructure.</p>",
+		"<h3>Kharkiv National University of Civil Engineering and Architecture</h3><img src='images/university.jpg' width='100%' alt=''/><p>There have been dozens of attacks involving educational and childcare centers. Footage shared on social media <a href='https://t.me/truexanewsua/36269'>on March 24, 2022</a>, shows the Kharkiv National University of Civil Engineering and Architecture heavily damaged by a strike. The school was founded in 1930 and has trained students from dozens of countries.</p>",
+		"<h3>Central City Hospital</h3><video src='images/central-city-hospital.mp4' alt='' width='100%'></video><p>There have also been multiple attacks on healthcare facilities. Footage from <a href='https://twitter.com/EmineDzheppar/status/1501202129586905089'>a Twitter post on March 8, 2022</a> shows only the skeleton of a hospital in Izyum after it was hit by a Russian attack.",
+		"<h3>Market</h3><video src='images/market.mp4' alt=''></video><p>There has also been damage to commercial centers, shopping malls and markets. <a href='https://t.me/truexanewsua/33669'>One clip posted on March 16, 2022</a>, shows a market in the heavily attacked Kharkiv city engulfed in flames.</p>",
 	];
 
 	const step0 = function () {
@@ -90,7 +79,7 @@
 			.filter((d) => d.area_type === "Residential")
 			.transition()
 			.duration(400)
-			.style("fill", colorG)
+			.style("fill", "var(--orange)")
 			.attr("r", 3);
 	};
 
@@ -99,7 +88,7 @@
 		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW3612")
-			.style("fill", colorG)
+			.style("fill", "var(--orange)")
 			.transition()
 			.duration(400)
 			.style("opacity", 1)
@@ -112,7 +101,7 @@
 		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW1895")
-			.style("fill", colorG)
+			.style("fill", "var(--orange)")
 			.transition()
 			.duration(400)
 			.style("opacity", 1)
@@ -125,7 +114,7 @@
 		step.style("visibility", "visible");
 		points
 			.filter((d) => d.id === "UW2688")
-			.style("fill", colorG)
+			.style("fill", "var(--orange)")
 			.transition()
 			.duration(400)
 			.style("opacity", 1)
@@ -134,13 +123,8 @@
 	};
 
 	const step4 = function () {
-		points.style("visibility", "visible").style("fill", colorD);
+		points.style("visibility", "visible").style("fill", "var(--purple)");
 		step.style("visibility", "visible");
-	};
-
-	const step5 = function () {
-		points.style("visibility", "visible");
-		step.style("visibility", "hidden");
 	};
 
 	/* run code reactively based on scroll position */
@@ -157,8 +141,6 @@
 		step3();
 	} else if (currentStep == 4) {
 		step4();
-	} else if (currentStep == 5) {
-		step5();
 	}
 </script>
 
@@ -213,10 +195,7 @@
 </section>
 
 <style>
-	/* TO DO: add variables for colors */
-
 	/* MAP STYLING */
-	/* TO DO: add global styles for containers */
 	.map-container {
 		text-align: center;
 		justify-content: center;
@@ -236,12 +215,12 @@
 	}
 
 	.cities {
-		fill: #b29dbc;
+		fill: var(--lightpurple);
 		opacity: 0.9;
 	}
 
 	.city-label {
-		fill: #b29dbc;
+		fill: var(--lightpurple);
 		font-size: 12px;
 		font-family: "IBM Plex Mono", monospace;
 	}
@@ -250,14 +229,14 @@
 
 	:global(.point) {
 		position: absolute;
-		fill: #7c6c83;
+		fill: var(--purple);
 		opacity: 0.65;
 	}
 
 	:global(.pulse) {
-		fill: #e76f51;
+		fill: var(--orange);
 		opacity: 0.35;
-		stroke: #f6bd60;
+		stroke: var(--yellow);
 		stroke-width: 10px;
 	}
 

@@ -2,7 +2,7 @@
 </script>
 
 <section>
-	<div class="container">
+	<div id="container">
 		<p><slot name="content" /></p>
 	</div>
 </section>
@@ -14,6 +14,13 @@
 		overflow: hidden;
 	}
 
+	#container {
+		text-align: center;
+		width: 40vw;
+		margin: auto;
+		position: sticky;
+	}
+
 	p {
 		text-align: left;
 		margin: 10px;
@@ -21,13 +28,5 @@
 		font-weight: 400;
 		line-height: 1.5rem;
 		font-family: "Public Sans", sans-serif;
-	}
-
-	.container {
-		text-align: center;
-		width: 650px;
-		margin: auto;
-		position: sticky;
-		padding-bottom: 10vh;
 	}
 </style>
