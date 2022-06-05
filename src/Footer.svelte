@@ -1,10 +1,15 @@
-<p><slot /></p>
+<div id="container"><p><slot /></p></div>
 
 <style>
+	#container {
+		text-align: left;
+		width: 40vw;
+		margin: auto;
+	}
 	p {
-		color: var(--purple);
+		color: var(--orange);
 		font-weight: bold;
-		font-size: 0.85rem;
+		font-size: 1rem;
 		font-family: "IBM Plex Mono", monospace;
 	}
 </style>

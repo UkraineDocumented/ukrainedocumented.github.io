@@ -174,6 +174,10 @@
 	></Footer
 >
 
+<div class="spacer" />
+
+<div class="spacer" />
+
 <style>
 	:global(body) {
 		margin: 0px;
