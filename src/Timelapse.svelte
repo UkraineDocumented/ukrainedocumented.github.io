@@ -17,6 +17,7 @@
 	let timer;
 	let inverted;
 	let pointer = 1;
+	let timelapse;
 
 	/***********/
 	/*** MAP ***/
@@ -97,7 +98,7 @@
 	onMount(async () => {
 		// DOM elements are first accessible inside onMount
 		svg = d3.select("svg").attr("width", w).attr("height", h);
-		playButton = d3.select(".play-button");
+		playButton = d3.selectAll(".play-button");
 		label = svg
 			.append("text")
 			.text(parseTime(start))
@@ -129,7 +130,6 @@
 </script>
 
 <section>
-	<Button type="play-button">Play</Button>
 	<div class="timelapse-container">
 		<svg>
 			<!-- oblasts -->
@@ -167,19 +167,15 @@
 		text-align: center;
 		width: 100vw;
 		overflow: hidden;
-		padding-top: 20px;
 	}
+
+	/* TIMELAPSE MAP STYLING */
 	.timelapse-container {
 		text-align: center;
 		width: 100vw;
 		margin: auto;
 		position: sticky;
 		padding: 20px;
-	}
-
-	:global(.timelapse-point) {
-		fill: #7c6c83;
-		opacity: 0.65;
 	}
 
 	.regions {
@@ -199,6 +195,26 @@
 		font-family: "IBM Plex Mono", monospace;
 	}
 
+	/* POINTS STYLING */
+	:global(.timelapse-point) {
+		fill: #7c6c83;
+		opacity: 0.65;
+	}
+
+	:global(.point) {
+		position: absolute;
+		fill: #7c6c83;
+		opacity: 0.65;
+	}
+
+	:global(.pulse) {
+		fill: #e76f51;
+		opacity: 0.35;
+		stroke: #f6bd60;
+		stroke-width: 10px;
+	}
+
+	/* DATE LABEL STYLING */
 	:global(#label) {
 		background-color: #efeff0;
 		font-weight: 600;

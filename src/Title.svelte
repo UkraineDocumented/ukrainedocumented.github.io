@@ -1,12 +1,10 @@
 <script>
-	export let title;
-	export let byline;
 </script>
 
 <section>
-	<div class="container">
-		<h1>{title}</h1>
-		<p>By {byline}</p>
+	<div id="container">
+		<h1><slot name="hed" /></h1>
+		<h3>By <slot name="byline" /></h3>
 	</div>
 </section>
 
@@ -17,6 +15,7 @@
 		width: 100vw;
 		overflow: hidden;
 	}
+
 	h1 {
 		text-align: center;
 		margin: 10px;
@@ -24,7 +23,8 @@
 		font-weight: 700;
 		font-family: "Space Grotesk", sans-serif;
 	}
-	p {
+
+	h3 {
 		text-align: center;
 		text-align: center;
 		margin: 10px;
@@ -34,7 +34,7 @@
 		text-transform: uppercase;
 	}
 
-	.container {
+	#container {
 		text-align: center;
 		width: 800px;
 		margin: auto;
