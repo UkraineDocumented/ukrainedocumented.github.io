@@ -20,6 +20,7 @@
 	import Content from "./Content.svelte"; // reusable text content component
 	import Image from "./Image.svelte"; // reusable wide image component
 	import Button from "./Button.svelte"; // reusable button component
+	import Footer from "./Footer.svelte";
 </script>
 
 <svelte:head>
@@ -108,6 +109,13 @@
 
 <Map />
 
+<div class="spacer" />
+
+<Image src="images/after.jpg" alt=""
+	>An satellite image from Planet Labs taken on May 1, 2022. Much of the
+	Azovstal Iron and Steel Works has been destroyed.
+</Image>
+
 <Content
 	><span slot="content">
 		<p>
@@ -119,14 +127,7 @@
 			were targeted by missiles and shelling. In March, Ukrainian MP Serhiy
 			Taruta said that Russian forces had "practically destroyed the factory".
 		</p>
-	</span>
-</Content>
-
-<Image src="images/ukraine-geo.png" alt="" />
-
-<Content
-	><span slot="content"
-		><p>
+		<p>
 			Underneath the plant is a network of tunnels and bunkers where Ukrainian
 			forces stayed and refused to surrender. The works were one of the last
 			centers of Ukrainian resistance in Mariupol and the facility has its own
@@ -137,6 +138,19 @@
 			And in late May, it was reported that surrendered Ukrainian fighters left
 			the factory.
 		</p>
+	</span>
+</Content>
+
+<div class="spacer" />
+
+<Image src="images/ukraine-geo.png" alt=""
+	>Using this video, originally posted on Telegram on 9 March 2022, it’s
+	possible to cross-reference the damage on the ground with satellite imagery
+	provided by Planet Labs PBC.</Image
+>
+
+<Content
+	><span slot="content">
 		<p>
 			In the nearby streets of Mariupol, debris scattered the roads and trees
 			were fallen. There’s a cavernous hole stands in a large building that is
@@ -150,6 +164,16 @@
 	></Content
 >
 
+<div class="spacer" />
+
+<Footer
+	>To see learn more and see the documentation and all of the code for this
+	project, head over to our <a
+		href="https://github.com/UkraineDocumented/ukrainedocumented.github.io"
+		>GitHub Page.</a
+	></Footer
+>
+
 <style>
 	:global(body) {
 		margin: 0px;
@@ -158,7 +182,7 @@
 	}
 
 	/* color palette */
-	:global(:root) {
+	:root {
 		--whitish: #efeff0;
 		--yellow: #f6bd60;
 		--orange: #e76f51;
@@ -192,5 +216,10 @@
 	a:hover:after {
 		transform: scaleX(1);
 		transform-origin: bottom left;
+	}
+
+	.spacer {
+		width: 100vw;
+		height: 10vh;
 	}
 </style>

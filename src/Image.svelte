@@ -16,7 +16,7 @@
 
 <style>
 	p {
-		color: #e76f51;
+		color: var(--purple);
 		font-size: 0.85rem;
 		font-family: "IBM Plex Mono", monospace;
 	}
@@ -31,6 +31,8 @@
 	}
 
 	#caption {
-		width: 15vw;
+		text-align: center;
+		width: 30vw;
+		margin: auto;
 	}
 </style>

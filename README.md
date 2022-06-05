@@ -61,8 +61,6 @@ This project also utilizes Russell Goldenberg's **`Scrolly.svelte`** [component]
 
 ### Ukraine Witness
 
-TODO INSERT BLURB HERE
-
 First, we removed social media links for posts where privacy was a concern (a "Yes" in the `F_PRIVATE_INFO_VISABLE` column).
 
 We then removed a few unneeded columns, for added simplicity: `I_PUBLIC_MAP_STATUS`, `F_PRIVATE INFO VISABLE`, `F_PRIVACY_DETAILS`, `E_VERIFIED_ANALYSIS_ARMS_AND_OR_MUNITION`, and `B_URL_OF_GEOLOCATION`.
