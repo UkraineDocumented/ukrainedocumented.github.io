@@ -5,7 +5,7 @@ ghpages.publish(
 		branch: "gh-pages",
 		repo: "https://github.com/UkraineDocumented/ukrainedocumented.github.io", // point to your repo on GitHub
 		user: {
-			name: "Elena Shao",
+			name: "Elena",
 			email: "elenalingshao@gmail.com",
 		},
 		dotfiles: true,
