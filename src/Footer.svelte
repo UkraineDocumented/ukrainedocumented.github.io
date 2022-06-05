@@ -3,7 +3,7 @@
 <style>
 	#container {
 		text-align: left;
-		width: 40vw;
+		width: 20vw;
 		margin: auto;
 	}
 	p {
